@@ -5,7 +5,7 @@
   "homepage": "https://SGlinkau.github.io/project-grupa5",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /project-Filmoteka/"
+    "build": "parcel build src/*.html --public-url /project-grupa5/"
   },
   "repository": {
     "type": "git",
