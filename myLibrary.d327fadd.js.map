@@ -1,0 +1,1 @@
+{"mappings":"A,+D","sources":["<anon>","src/myLibrary.js"],"sourcesContent":["(function () {\n\n\n})();\n//# sourceMappingURL=myLibrary.d327fadd.js.map\n","import './main.scss';"],"names":[],"version":3,"file":"myLibrary.d327fadd.js.map"}
