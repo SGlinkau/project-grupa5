@@ -18,17 +18,17 @@
     "url": "https://github.com/SGlinkau/project-grupa5/issues"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "firebase": "^9.9.0",
-    "js-confetti": "^0.10.2",
-    "modern-normalize": "^1.1.0",
-    "notiflix": "^3.2.5",
-    "sass": "^1.53.0"
+    "axios": "^1.5.0",
+    "firebase": "^10.4.0",
+    "js-confetti": "^0.11.0",
+    "modern-normalize": "^2.0.0",
+    "notiflix": "^3.2.6",
+    "sass": "^1.68.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.5.0",
+    "@parcel/transformer-sass": "^2.9.3",
     "buffer": "^6.0.3",
-    "parcel": "^2.5.0",
+    "parcel": "^2.9.3",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4",
     "process": "^0.11.10"
