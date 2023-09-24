@@ -29,6 +29,7 @@
     justify-content: center;
   }
   &__image {
+    animation: heartbeat 1s infinite;
     width: 14px;
     margin-left: 10px;
     margin-right: 10px;
@@ -36,5 +37,16 @@
   &__year {
     margin-left: 8px;
     margin-right: 4px;
+  }
+}
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.1);
+  }
+  40% {
+    transform: scale(1.2);
   }
 }
