@@ -1,4 +1,5 @@
-.footer {
+.footer,
+.footer__btn {
   font-family: $mainFont;
   font-weight: $secondFontWieght;
   line-height: 16.41px;
@@ -37,6 +38,19 @@
   &__year {
     margin-left: 8px;
     margin-right: 4px;
+  }
+  &__btn {
+    border: none;
+    position: relative;
+  }
+  &__btn::after {
+    position: absolute;
+    right: 0;
+    margin-top: 16px;
+    content: '';
+    width: 100%;
+    border-bottom: solid 3px #ff6b08;
+    border-radius: 4px;
   }
 }
 @keyframes heartbeat {
