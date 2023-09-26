@@ -15,7 +15,7 @@ const{toString:f}=Object.prototype,{getPrototypeOf:u}=Object,l=(e=Object.create(
  * @returns {any}
  */function S(t,e,{allOwnKeys:r=!1}={}){let n,o;// Don't bother if no value provided
 if(null!=t){if("object"!=typeof t&&/*eslint no-param-reassign:0*/(t=[t]),p(t))for(n=0,o=t.length;n<o;n++)e.call(null,t[n],n,t);else{let o;// Iterate over object keys
-let i=r?Object.getOwnPropertyNames(t):Object.keys(t),s=i.length;for(n=0;n<s;n++)o=i[n],e.call(null,t[o],o,t)}}}function T(t,e){let r;e=e.toLowerCase();let n=Object.keys(t),o=n.length;for(;o-- >0;)if(e===(r=n[o]).toLowerCase())return r;return null}const U=/*eslint no-undef:0*/"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:s,C=t=>!d(t)&&t!==U,I=(r="undefined"!=typeof Uint8Array&&u(Uint8Array),t=>r&&t instanceof r),x=c("HTMLFormElement"),N=(({hasOwnProperty:t})=>(e,r)=>t.call(e,r))(Object.prototype),L=c("RegExp"),j=(t,e)=>{let r=Object.getOwnPropertyDescriptors(t),n={};S(r,(r,o)=>{let i;!1!==(i=e(r,o,t))&&(n[o]=i||r)}),Object.defineProperties(t,n)},_="abcdefghijklmnopqrstuvwxyz",P="0123456789",F={DIGIT:P,ALPHA:_,ALPHA_DIGIT:_+_.toUpperCase()+P},D=c("AsyncFunction");var k={isArray:p,isArrayBuffer:y,isBuffer:/**
+let i=r?Object.getOwnPropertyNames(t):Object.keys(t),s=i.length;for(n=0;n<s;n++)o=i[n],e.call(null,t[o],o,t)}}}function T(t,e){let r;e=e.toLowerCase();let n=Object.keys(t),o=n.length;for(;o-- >0;)if(e===(r=n[o]).toLowerCase())return r;return null}const U=/*eslint no-undef:0*/"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:s,C=t=>!d(t)&&t!==U,I=(r="undefined"!=typeof Uint8Array&&u(Uint8Array),t=>r&&t instanceof r),N=c("HTMLFormElement"),x=(({hasOwnProperty:t})=>(e,r)=>t.call(e,r))(Object.prototype),L=c("RegExp"),j=(t,e)=>{let r=Object.getOwnPropertyDescriptors(t),n={};S(r,(r,o)=>{let i;!1!==(i=e(r,o,t))&&(n[o]=i||r)}),Object.defineProperties(t,n)},_="abcdefghijklmnopqrstuvwxyz",P="0123456789",F={DIGIT:P,ALPHA:_,ALPHA_DIGIT:_+_.toUpperCase()+P},D=c("AsyncFunction");var k={isArray:p,isArrayBuffer:y,isBuffer:/**
  * Determine if a value is a Buffer
  *
  * @param {*} val The value to test
@@ -46,7 +46,7 @@ let i=r?Object.getOwnPropertyNames(t):Object.keys(t),s=i.length;for(n=0;n<s;n++)
  *
  * @returns {Object} Result of all merge properties
  */function t(){let{caseless:e}=C(this)&&this||{},r={},n=(n,o)=>{let i=e&&T(r,o)||o;w(r[i])&&w(n)?r[i]=t(r[i],n):w(n)?r[i]=t({},n):p(n)?r[i]=n.slice():r[i]=n};for(let t=0,e=arguments.length;t<e;t++)arguments[t]&&S(arguments[t],n);return r},extend:(t,e,r,{allOwnKeys:n}={})=>(S(e,(e,n)=>{r&&m(e)?t[n]=a(e,r):t[n]=e},{allOwnKeys:n}),t),trim:t=>t.trim?t.trim():t.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,""),stripBOM:t=>(65279===t.charCodeAt(0)&&(t=t.slice(1)),t),inherits:(t,e,r,n)=>{t.prototype=Object.create(e.prototype,n),t.prototype.constructor=t,Object.defineProperty(t,"super",{value:e.prototype}),r&&Object.assign(t.prototype,r)},toFlatObject:(t,e,r,n)=>{let o,i,s;let a={};// eslint-disable-next-line no-eq-null,eqeqeq
-if(e=e||{},null==t)return e;do{for(i=(o=Object.getOwnPropertyNames(t)).length;i-- >0;)s=o[i],(!n||n(s,t,e))&&!a[s]&&(e[s]=t[s],a[s]=!0);t=!1!==r&&u(t)}while(t&&(!r||r(t,e))&&t!==Object.prototype)return e},kindOf:l,kindOfTest:c,endsWith:(t,e,r)=>{t=String(t),(void 0===r||r>t.length)&&(r=t.length),r-=e.length;let n=t.indexOf(e,r);return -1!==n&&n===r},toArray:t=>{if(!t)return null;if(p(t))return t;let e=t.length;if(!b(e))return null;let r=Array(e);for(;e-- >0;)r[e]=t[e];return r},forEachEntry:(t,e)=>{let r;let n=t&&t[Symbol.iterator],o=n.call(t);for(;(r=o.next())&&!r.done;){let n=r.value;e.call(t,n[0],n[1])}},matchAll:(t,e)=>{let r;let n=[];for(;null!==(r=t.exec(e));)n.push(r);return n},isHTMLForm:x,hasOwnProperty:N,hasOwnProp:N,reduceDescriptors:j,freezeMethods:t=>{j(t,(e,r)=>{// skip restricted props in strict mode
+if(e=e||{},null==t)return e;do{for(i=(o=Object.getOwnPropertyNames(t)).length;i-- >0;)s=o[i],(!n||n(s,t,e))&&!a[s]&&(e[s]=t[s],a[s]=!0);t=!1!==r&&u(t)}while(t&&(!r||r(t,e))&&t!==Object.prototype)return e},kindOf:l,kindOfTest:c,endsWith:(t,e,r)=>{t=String(t),(void 0===r||r>t.length)&&(r=t.length),r-=e.length;let n=t.indexOf(e,r);return -1!==n&&n===r},toArray:t=>{if(!t)return null;if(p(t))return t;let e=t.length;if(!b(e))return null;let r=Array(e);for(;e-- >0;)r[e]=t[e];return r},forEachEntry:(t,e)=>{let r;let n=t&&t[Symbol.iterator],o=n.call(t);for(;(r=o.next())&&!r.done;){let n=r.value;e.call(t,n[0],n[1])}},matchAll:(t,e)=>{let r;let n=[];for(;null!==(r=t.exec(e));)n.push(r);return n},isHTMLForm:N,hasOwnProperty:x,hasOwnProp:x,reduceDescriptors:j,freezeMethods:t=>{j(t,(e,r)=>{// skip restricted props in strict mode
 if(m(t)&&-1!==["arguments","caller","callee"].indexOf(r))return!1;let n=t[r];if(m(n)){if(e.enumerable=!1,"writable"in e){e.writable=!1;return}e.set||(e.set=()=>{throw Error("Can not rewrite read-only method '"+r+"'")})}})},toObjectSet:(t,e)=>{let r={};return(t=>{t.forEach(t=>{r[t]=!0})})(p(t)?t:String(t).split(e)),r},toCamelCase:t=>t.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,function(t,e,r){return e.toUpperCase()+r}),noop:()=>{},toFiniteNumber:(t,e)=>Number.isFinite(t=+t)?t:e,findKey:T,global:U,isContextDefined:C,ALPHABET:F,generateString:(t=16,e=F.ALPHA_DIGIT)=>{let r="",{length:n}=e;for(;t--;)r+=e[Math.random()*n|0];return r},isSpecCompliantForm:/**
  * If the thing is a FormData object, return true, otherwise return false.
  *
@@ -206,13 +206,13 @@ function tC(t){return"undefined"==typeof BigInt?tI:t}function tI(){throw Error("
  * @param {string} thing - The object or array to be visited.
  *
  * @returns {boolean}
- */function tx(t){return k.isPlainObject(t)||k.isArray(t)}/**
+ */function tN(t){return k.isPlainObject(t)||k.isArray(t)}/**
  * It removes the brackets from the end of a string
  *
  * @param {string} key - The key of the parameter.
  *
  * @returns {string} the key without the brackets.
- */function tN(t){return k.endsWith(t,"[]")?t.slice(0,-2):t}/**
+ */function tx(t){return k.endsWith(t,"[]")?t.slice(0,-2):t}/**
  * It takes a path, a key, and a boolean, and returns a string
  *
  * @param {string} path - The path to the current key.
@@ -221,7 +221,7 @@ function tC(t){return"undefined"==typeof BigInt?tI:t}function tI(){throw Error("
  *
  * @returns {string} The path to the current key.
  */function tL(t,e,r){return t?t.concat(e).map(function(t,e){return(// eslint-disable-next-line no-param-reassign
-t=tN(t),!r&&e?"["+t+"]":t)}).join(r?".":""):e}const tj=k.toFlatObject(k,{},null,function(t){return/^is[A-Z]/.test(t)});var t_=/**
+t=tx(t),!r&&e?"["+t+"]":t)}).join(r?".":""):e}const tj=k.toFlatObject(k,{},null,function(t){return/^is[A-Z]/.test(t)});var t_=/**
  * Convert a data object to FormData
  *
  * @param {Object} obj
@@ -255,8 +255,8 @@ return!k.isUndefined(e[t])});let n=r.metaTokens,o=r.visitor||l,i=r.dots,s=r.inde
    * @returns {boolean} return true to visit the each prop of the value recursively
    */function l(t,r,o){let a=t;if(t&&!o&&"object"==typeof t){if(k.endsWith(r,"{}"))// eslint-disable-next-line no-param-reassign
 r=n?r:r.slice(0,-2),// eslint-disable-next-line no-param-reassign
-t=JSON.stringify(t);else{var f;if(k.isArray(t)&&(f=t,k.isArray(f)&&!f.some(tx))||(k.isFileList(t)||k.endsWith(r,"[]"))&&(a=k.toArray(t)))return(// eslint-disable-next-line no-param-reassign
-r=tN(r),a.forEach(function(t,n){k.isUndefined(t)||null===t||e.append(!0===s?tL([r],n,i):null===s?r:r+"[]",u(t))}),!1)}}return!!tx(t)||(e.append(tL(o,r,i),u(t)),!1)}let c=[],h=Object.assign(tj,{defaultVisitor:l,convertValue:u,isVisitable:tx});if(!k.isObject(t))throw TypeError("data must be an object");return!function t(r,n){if(!k.isUndefined(r)){if(-1!==c.indexOf(r))throw Error("Circular reference detected in "+n.join("."));c.push(r),k.forEach(r,function(r,i){let s=!(k.isUndefined(r)||null===r)&&o.call(e,r,k.isString(i)?i.trim():i,n,h);!0===s&&t(r,n?n.concat(i):[i])}),c.pop()}}(t),e};/**
+t=JSON.stringify(t);else{var f;if(k.isArray(t)&&(f=t,k.isArray(f)&&!f.some(tN))||(k.isFileList(t)||k.endsWith(r,"[]"))&&(a=k.toArray(t)))return(// eslint-disable-next-line no-param-reassign
+r=tx(r),a.forEach(function(t,n){k.isUndefined(t)||null===t||e.append(!0===s?tL([r],n,i):null===s?r:r+"[]",u(t))}),!1)}}return!!tN(t)||(e.append(tL(o,r,i),u(t)),!1)}let c=[],h=Object.assign(tj,{defaultVisitor:l,convertValue:u,isVisitable:tN});if(!k.isObject(t))throw TypeError("data must be an object");return!function t(r,n){if(!k.isUndefined(r)){if(-1!==c.indexOf(r))throw Error("Circular reference detected in "+n.join("."));c.push(r),k.forEach(r,function(r,i){let s=!(k.isUndefined(r)||null===r)&&o.call(e,r,k.isString(i)?i.trim():i,n,h);!0===s&&t(r,n?n.concat(i):[i])}),c.pop()}}(t),e};/**
  * It encodes a string by replacing all characters that are not in the unreserved set with
  * their percent-encoded equivalents
  *
@@ -493,7 +493,6 @@ eE.isAxiosError=function(t){return k.isObject(t)&&!0===t.isAxiosError},// Expose
 eE.mergeConfig=el,eE.AxiosHeaders=t5,eE.formToJSON=t=>tK(k.isHTMLForm(t)?new FormData(t):t),eE.getAdapter=es.getAdapter,eE.HttpStatusCode=eb,eE.default=eE;// This module is intended to unwrap Axios default export as named.
 // Keep top-level export same with static properties
 // so that it can keep same with es module or cjs
-const{Axios:ew,AxiosError:eA,CanceledError:eO,isCancel:eR,CancelToken:eB,VERSION:ev,all:eS,Cancel:eT,isAxiosError:eU,spread:eC,toFormData:eI,AxiosHeaders:ex,HttpStatusCode:eN,formToJSON:eL,getAdapter:ej,mergeConfig:e_}=eE;eE.defaults.headers.common["x-api-key"]="c90cdec037818042646f6ab3cec9ea66";const eP=document.querySelector(".header__input-wrapper");async function eF(){try{let t=await eE.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US"},headers:{accept:"application/json",Authorization:"Bearer c90cdec037818042646f6ab3cec9ea66"}}),e=document.createElement("ul");eP.after(e),t.results.forEach(t=>{e.insertAdjacentHTML("beforeend",`<li><a>${t.title}</a></li>`)})}catch{}}// export function getByTitle(title) {
-eE.defaults.headers.common["x-api-key"]="c90cdec037818042646f6ab3cec9ea66";const eD=document.querySelector("#input");window.addEventListener("load",eF),eD.addEventListener("submit",t=>{t.preventDefault(),getByTitle(eD.value)});//# sourceMappingURL=index.2a5ed0e9.js.map
+const{Axios:ew,AxiosError:eA,CanceledError:eO,isCancel:eR,CancelToken:eB,VERSION:ev,all:eS,Cancel:eT,isAxiosError:eU,spread:eC,toFormData:eI,AxiosHeaders:eN,HttpStatusCode:ex,formToJSON:eL,getAdapter:ej,mergeConfig:e_}=eE,eP=document.querySelector(".header"),eF=document.createElement("ul");async function eD(){try{eP.after(eF);let t=await eE.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});t.data.results.forEach(t=>{eF.insertAdjacentHTML("beforeend",`<li><a>${t.title}</a></li>`)})}catch{}}async function ek(t){try{let e=await eE.get("https://api.themoviedb.org/3/search/movie",{params:{query:`${t}`,api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});e.data.results.forEach(t=>{eF.insertAdjacentHTML("beforeend",`<li><a>${t.title}</a></li>`)})}catch{}}const eM=document.querySelector(".header__form"),e$=document.querySelector("#input");window.addEventListener("load",eD),eM.addEventListener("submit",t=>{t.preventDefault(),eF.replaceChildren(),ek(e$.value)});//# sourceMappingURL=index.b4477f4e.js.map
 
-//# sourceMappingURL=index.2a5ed0e9.js.map
+//# sourceMappingURL=index.b4477f4e.js.map
