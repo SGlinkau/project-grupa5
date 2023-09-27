@@ -1,0 +1,178 @@
+@import './variables';
+
+.modal {
+  width: 280px;
+  padding: 0px 20px;
+  background-color: pink;
+  font-size: 12px;
+  font-family: $mainFont;
+  font-weight: $mainFontWieght;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  margin: 20px;
+
+  &__aside {
+    row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+    flex-direction: row;
+    padding-left: 0px;
+
+    &__aside {
+      flex-direction: column;
+      row-gap: 20px;
+      padding-top: 40px;
+      margin-left: 68px;
+      max-width: 264px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    width: 806px;
+    padding: 12px;
+
+    &__aside {
+      display: flex;
+      flex-direction: column;
+      margin-left: 16px;
+      max-width: none;
+    }
+  }
+
+  &__thumbnail {
+    width: 240px;
+    height: 357px;
+
+    @media screen and (min-width: 768px) {
+      width: 264px;
+      height: 413.55px;
+      padding-top: 40px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      width: 375px;
+      height: 518px;
+    }
+  }
+  &__icon {
+    position: relative;
+    left: 222;
+    top: 12;
+    margin-bottom: 10px;
+    min-width: 30px;
+    min-height: 30px;
+
+    @media screen and (min-width: 768px) {
+      left: 666;
+    }
+    @media screen and (min-width: 1024px) {
+      left: 756;
+      top: -4;
+      margin-bottom: 0px;
+    }
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 23.44px;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 30px;
+      line-height: 35.16px;
+    }
+  }
+
+  &__list-section {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__movie-stats {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    color: $modalLabelFontColor;
+    margin-right: 39px;
+
+    @media screen and (min-width: 1024px) {
+      margin-right: 83px;
+    }
+
+    &__item {
+      color: $modalLabelFontColor;
+      line-height: 16px;
+    }
+
+    &-value {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+
+      &__item {
+        line-height: 16px;
+      }
+    }
+  }
+
+  &__about {
+    line-height: 16px;
+    margin-bottom: -14px;
+
+    &--content {
+      line-height: 20px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 1024px) {
+      margin-left: 8px;
+    }
+
+    &__btn {
+      width: 110px;
+      height: 44px;
+      line-height: 16px;
+      border: 1px solid $fontColor;
+      border-radius: 5px;
+
+      @media screen and (min-width: 768px) {
+        width: 125.03px;
+        padding: 13px 14px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        width: 136px;
+      }
+
+      &--watched {
+        padding: 6px 27px;
+        background-color: $modalButtonColor;
+        color: $secondFontColor;
+        border: none;
+
+        @media screen and (min-width: 768px) {
+          padding: 0px;
+        }
+      }
+    }
+  }
+}
+
+.is-hidden {
+  scale: 0;
+}
