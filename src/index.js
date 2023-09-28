@@ -4,9 +4,12 @@ import { getByTitle } from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
+import { getTrailer } from './api.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
+// const poster = document.querySelectorAll('.movie-box__poster');
+const trailerButton = document.querySelector('.movie-box__trailer-button');
 
 window.addEventListener('load', () => {
   getGenres();
@@ -20,6 +23,17 @@ form.addEventListener('submit', e => {
 });
 
 moviesList.addEventListener('click', e => {
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
   const id = e.target.getAttribute('id');
   getDetails(id);
+});
+
+moviesList.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const id = e.target.getAttribute('id');
+  getTrailer(id);
 });
