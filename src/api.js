@@ -24,6 +24,9 @@ export async function getPopular() {
         'beforeend',
         `<li class='movie-box'>
         <a class='movie-box__link'>
+        <button class='movie-box__trailer-button' type='button' id=${
+          item.id
+        }>Trailer</button>
         <img class='movie-box__poster' id=${
           item.id
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
@@ -59,6 +62,9 @@ export async function getByTitle(title) {
         'beforeend',
         `<li class='movie-box'>
         <a class='movie-box__link'>
+        <button class='movie-box__trailer-button' type='button' id=${
+          item.id
+        }>Trailer</button>
         <img class='movie-box__poster' id=${
           item.id
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
@@ -129,92 +135,30 @@ export async function getGenres() {
     error => console.log(error);
   }
 }
-// import axios from 'axios';
 
-// export const moviesList = document.querySelector('.movies-list');
+export async function getTrailer(movieId) {
+  try {
+    const trailer = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos`,
+      {
+        params: {
+          language: 'en-US',
+          api_key: 'c90cdec037818042646f6ab3cec9ea66',
+        },
+        headers: {
+          accept: 'application/json',
+        },
+      }
+    );
 
-// export async function getPopular() {
-//   try {
-//     const popular = await axios.get(
-//       'https://api.themoviedb.org/3/trending/movie/day',
-//       {
-//         params: {
-//           language: 'en-US',
-//           api_key: 'c90cdec037818042646f6ab3cec9ea66',
-//         },
-//         headers: {
-//           accept: 'application/json',
-//         },
-//       }
-//     );
-
-//     // Wyczyść listę filmów przed dodaniem nowych filmów
-//     moviesList.innerHTML = '';
-
-//     popular.data.results.forEach(item => {
-//       const movieItem = document.createElement('li');
-//       movieItem.classList.add('movie-item');
-
-//       const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-
-//       movieItem.innerHTML = `
-//         <div class="movie-poster">
-//           <img src="${posterUrl}" alt="${item.title}" />
-//         </div>
-//         <div class="movie-details">
-//           <h2 class="movie-title">${item.title}</h2>
-//           <p class="movie-genre">Genres: ${item.genre_ids.join(', ')}</p>
-//           <p class="movie-year">Release Year: ${item.release_date ? item.release_date.slice(0, 4) : 'N/A'}</p>
-//         </div>
-//       `;
-
-//       moviesList.appendChild(movieItem);
-//     });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// export async function getByTitle(title) {
-//   try {
-//     const moviesByTitle = await axios.get(
-//       'https://api.themoviedb.org/3/search/movie',
-//       {
-//         params: {
-//           query: title,
-//           api_key: 'c90cdec037818042646f6ab3cec9ea66',
-//         },
-//         headers: {
-//           accept: 'application/json',
-//         },
-//       }
-//     );
-
-//     // Wyczyść listę filmów przed dodaniem nowych filmów
-//     moviesList.innerHTML = '';
-
-//     moviesByTitle.data.results.forEach(item => {
-//       const movieItem = document.createElement('li');
-//       movieItem.classList.add('movie-item');
-
-//       const posterUrl = `https://image.tmdb.org/t/p/w500${item.poster_path}`;
-
-//       movieItem.innerHTML = `
-//         <div class="movie-poster">
-//           <img src="${posterUrl}" alt="${item.title}" />
-//         </div>
-//         <div class="movie-details">
-//           <h2 class="movie-title">${item.title}</h2>
-//           <p class="movie-genre">Genres: ${item.genre_ids.join(', ')}</p>
-//           <p class="movie-year">Release Year: ${item.release_date ? item.release_date.slice(0, 4) : 'N/A'}</p>
-//         </div>
-//       `;
-
-//       moviesList.appendChild(movieItem);
-//     });
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-// getPopular();
-// // Wywołaj jedną z funkcji, np. getPopular(), aby wyświetlić filmy w galerii
+    const movies = trailer.data.results;
+    for (const movie of movies) {
+      if (movie.type === 'Trailer') {
+        console.log(`https://youtu.be/${movie.key}`);
+        break;
+      }
+    }
+  } catch {
+    error => console.log(error);
+  }
+}
