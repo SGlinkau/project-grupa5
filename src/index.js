@@ -8,8 +8,6 @@ import { getTrailer } from './api.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
-// const poster = document.querySelectorAll('.movie-box__poster');
-const trailerButton = document.querySelector('.movie-box__trailer-button');
 
 window.addEventListener('load', () => {
   getGenres();

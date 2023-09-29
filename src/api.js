@@ -4,6 +4,9 @@ const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
 
+//nowe
+const genreIdToName = {};
+
 export async function getPopular() {
   try {
     header.after(moviesList);
@@ -20,6 +23,8 @@ export async function getPopular() {
       }
     );
     popular.data.results.forEach(item => {
+      //nowe
+      const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
         'beforeend',
         `<li class='movie-box'>
@@ -32,7 +37,7 @@ export async function getPopular() {
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
         </a>
         <h2 class='movie-box__title'>${item.title}</h2>
-        <p class='movie-box__info'>${item.genre_ids.join(
+        <p class='movie-box__info'>${genreNames.join(
           ', '
         )} | ${item.release_date.slice(0, 4)}</p>
         </li>`
@@ -58,6 +63,8 @@ export async function getByTitle(title) {
       }
     );
     moviesByTitle.data.results.forEach(item => {
+      //nowe
+      const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
         'beforeend',
         `<li class='movie-box'>
@@ -70,7 +77,7 @@ export async function getByTitle(title) {
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
         </a>
         <h2 class='movie-box__title'>${item.title}</h2>
-        <p class='movie-box__info'>${item.genre_ids.join(
+        <p class='movie-box__info'>${genreNames.join(
           ', '
         )} | ${item.release_date.slice(0, 4)}</p>
         </li>`
@@ -121,7 +128,8 @@ export async function getDetails(movieId) {
 
 export async function getGenres() {
   try {
-    const genres = await axios.get(
+    //nowe
+    const genresResponse = await axios.get(
       'https://api.themoviedb.org/3/genre/movie/list',
       {
         params: { language: 'en', api_key: 'c90cdec037818042646f6ab3cec9ea66' },
@@ -130,7 +138,12 @@ export async function getGenres() {
         },
       }
     );
-    console.log(genres.data);
+    //nowe
+    const genres = genresResponse.data.genres;
+    genres.forEach(genre => {
+      genreIdToName[genre.id] = genre.name;
+    });
+    // console.log(genres.data);
   } catch {
     error => console.log(error);
   }
