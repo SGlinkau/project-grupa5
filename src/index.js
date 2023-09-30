@@ -6,6 +6,7 @@ import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
 
+
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
 

@@ -149,7 +149,11 @@ export async function getGenres() {
   }
 }
 
+
 export async function getTrailer(movieId) {
+  let modal; 
+  let iframe; 
+
   try {
     const trailer = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/videos`,
@@ -166,12 +170,46 @@ export async function getTrailer(movieId) {
 
     const movies = trailer.data.results;
     for (const movie of movies) {
-      if (movie.type === 'Trailer') {
-        console.log(`https://youtu.be/${movie.key}`);
+      if (movie.type === 'Trailer' && movie.site === 'YouTube') {
+        const trailerKey = movie.key;
+
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'trailer-modal';
+
+          const closeButton = document.createElement('button');
+          closeButton.innerHTML = 'X';
+          closeButton.addEventListener('click', () => {
+            
+            modal.style.display = 'none';
+
+            document.body.classList.remove('modal-open');
+            
+            if (iframe) {
+              iframe.src = '';
+            }
+          });
+          modal.appendChild(closeButton);
+
+          iframe = document.createElement('iframe');
+          iframe.width = '800'; 
+          iframe.height = '450'; 
+          iframe.allowFullscreen = true;
+          modal.appendChild(iframe);
+
+          document.body.appendChild(modal);
+
+          document.body.classList.add('modal-open');
+        }
+
+        iframe.src = `https://www.youtube.com/embed/${trailerKey}`;
+
+        modal.style.display = 'block';
+
         break;
       }
     }
-  } catch {
-    error => console.log(error);
+  } catch (error) {
+    console.log(error);
   }
 }
