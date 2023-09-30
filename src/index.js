@@ -1,16 +1,16 @@
 import './main.scss';
-import { getPopular } from './api.js';
+import { getPopular, searchError } from './api.js';
 import { getByTitle } from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
 
-
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
 
 window.addEventListener('load', () => {
+  searchError.classList.add('is-hidden');
   getGenres();
   getPopular();
 });
@@ -19,6 +19,10 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   moviesList.replaceChildren();
   getByTitle(input.value);
+});
+
+form.addEventListener('change', () => {
+  searchError.classList.add('is-hidden');
 });
 
 moviesList.addEventListener('click', e => {
