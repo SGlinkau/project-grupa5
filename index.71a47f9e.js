@@ -493,31 +493,30 @@ ev.isAxiosError=function(t){return D.isObject(t)&&!0===t.isAxiosError},// Expose
 ev.mergeConfig=eh,ev.AxiosHeaders=t5,ev.formToJSON=t=>tK(D.isHTMLForm(t)?new FormData(t):t),ev.getAdapter=eu.getAdapter,ev.HttpStatusCode=eE,ev.default=ev;// This module is intended to unwrap Axios default export as named.
 // Keep top-level export same with static properties
 // so that it can keep same with es module or cjs
-const{Axios:eA,AxiosError:eO,CanceledError:eR,isCancel:eB,CancelToken:eS,VERSION:eT,all:eU,Cancel:e_,isAxiosError:eC,spread:ex,toFormData:eL,AxiosHeaders:eI,HttpStatusCode:eN,formToJSON:ej,getAdapter:eP,mergeConfig:eF}=ev,ek=document.querySelector(".header"),eD=document.createElement("ul");eD.classList.add("movies-list");//nowe
-const e$={};async function eM(){try{ek.after(eD);let t=await ev.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});t.data.results.forEach(t=>{//nowe
-let e=t.genre_ids.map(t=>e$[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
+const{Axios:eA,AxiosError:eO,CanceledError:eR,isCancel:eB,CancelToken:eS,VERSION:eT,all:eU,Cancel:e_,isAxiosError:eC,spread:ex,toFormData:eL,AxiosHeaders:eI,HttpStatusCode:eN,formToJSON:ej,getAdapter:eP,mergeConfig:eF}=ev,ek=document.querySelector(".header"),eD=document.createElement("ul");eD.classList.add("movies-list");const e$=document.querySelector(".not-found"),eM={};async function eq(){try{ek.after(eD);let t=await ev.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});t.data.results.forEach(t=>{//nowe
+let e=t.genre_ids.map(t=>eM[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
         <a class='movie-box__link'>
         <button class='movie-box__trailer-button' type='button' id=${t.id}>Trailer</button>
         <img class='movie-box__poster' id=${t.id} src='https://www.themoviedb.org/t/p/w500${t.poster_path}' />
         </a>
         <h2 class='movie-box__title'>${t.title}</h2>
         <p class='movie-box__info'>${e.join(", ")} | ${t.release_date.slice(0,4)}</p>
-        </li>`)})}catch{}}async function eq(t){try{let e=await ev.get("https://api.themoviedb.org/3/search/movie",{params:{query:`${t}`,api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});e.data.results.forEach(t=>{//nowe
-let e=t.genre_ids.map(t=>e$[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
+        </li>`)})}catch{}}async function ez(t){try{let e=await ev.get("https://api.themoviedb.org/3/search/movie",{params:{query:`${t}`,api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),r=e.data.results;0===r.length&&e$.classList.remove("is-hidden"),r.forEach(t=>{//nowe
+let e=t.genre_ids.map(t=>eM[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
         <a class='movie-box__link'>
         <button class='movie-box__trailer-button' type='button' id=${t.id}>Trailer</button>
         <img class='movie-box__poster' id=${t.id} src='https://www.themoviedb.org/t/p/w500${t.poster_path}' />
         </a>
         <h2 class='movie-box__title'>${t.title}</h2>
         <p class='movie-box__info'>${e.join(", ")} | ${t.release_date.slice(0,4)}</p>
-        </li>`)})}catch{}}async function ez(t){try{let e=document.createElement("div");eD.after(e);let r=await ev.get(`https://api.themoviedb.org/3/movie/${t}`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),n=[];r.data.genres.forEach(t=>{let e=t.name;n.push(e)}),e.insertAdjacentHTML("afterbegin",`<img src='https://www.themoviedb.org/t/p/w500${r.data.poster_path}'/>
+        </li>`)})}catch{}}async function eH(t){try{let e=document.createElement("div");eD.after(e);let r=await ev.get(`https://api.themoviedb.org/3/movie/${t}`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),n=[];r.data.genres.forEach(t=>{let e=t.name;n.push(e)}),e.insertAdjacentHTML("afterbegin",`<img src='https://www.themoviedb.org/t/p/w500${r.data.poster_path}'/>
       <h2>${r.data.title}</h2>
       <p>Vote / Votes ${r.data.vote_average} / ${r.data.vote_count}</p>
       <p>Popularity ${r.data.popularity}</p>
       <p>Original Title ${r.data.original_title}</p>
       <p>Genre ${[...n]}</p>
-    <p>ABOUT: ${r.data.overview}</p>`)}catch{}}async function eH(){try{//nowe
-let t=await ev.get("https://api.themoviedb.org/3/genre/movie/list",{params:{language:"en",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),e=t.data.genres;e.forEach(t=>{e$[t.id]=t.name});// console.log(genres.data);
-}catch{}}async function eJ(t){let e,r;try{let n=await ev.get(`https://api.themoviedb.org/3/movie/${t}/videos`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),i=n.data.results;for(let t of i)if("Trailer"===t.type&&"YouTube"===t.site){let n=t.key;if(!e){(e=document.createElement("div")).id="trailer-modal";let t=document.createElement("button");t.innerHTML="X",t.addEventListener("click",()=>{e.style.display="none",document.body.classList.remove("modal-open"),r&&(r.src="")}),e.appendChild(t),(r=document.createElement("iframe")).width="800",r.height="450",r.allowFullscreen=!0,e.appendChild(r),document.body.appendChild(e),document.body.classList.add("modal-open")}r.src=`https://www.youtube.com/embed/${n}`,e.style.display="block";break}}catch(t){console.log(t)}}const eV=document.querySelector(".header__form"),eW=document.querySelector("#input");window.addEventListener("load",()=>{eH(),eM()}),eV.addEventListener("submit",t=>{t.preventDefault(),eD.replaceChildren(),eq(eW.value)}),eD.addEventListener("click",t=>{if("IMG"!==t.target.nodeName)return;let e=t.target.getAttribute("id");ez(e)}),eD.addEventListener("click",t=>{if("BUTTON"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eJ(e)});//# sourceMappingURL=index.241df537.js.map
+    <p>ABOUT: ${r.data.overview}</p>`)}catch{}}async function eJ(){try{//nowe
+let t=await ev.get("https://api.themoviedb.org/3/genre/movie/list",{params:{language:"en",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),e=t.data.genres;e.forEach(t=>{eM[t.id]=t.name});// console.log(genres.data);
+}catch{}}async function eV(t){let e,r;try{let n=await ev.get(`https://api.themoviedb.org/3/movie/${t}/videos`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),i=n.data.results;for(let t of i)if("Trailer"===t.type&&"YouTube"===t.site){let n=t.key;if(!e){(e=document.createElement("div")).id="trailer-modal";let t=document.createElement("button");t.innerHTML="X",t.addEventListener("click",()=>{e.style.display="none",document.body.classList.remove("modal-open"),r&&(r.src="")}),e.appendChild(t),(r=document.createElement("iframe")).width="800",r.height="450",r.allowFullscreen=!0,e.appendChild(r),document.body.appendChild(e),document.body.classList.add("modal-open")}r.src=`https://www.youtube.com/embed/${n}`,e.style.display="block";break}}catch(t){console.log(t)}}const eW=document.querySelector(".header__form"),eG=document.querySelector("#input");window.addEventListener("load",()=>{e$.classList.add("is-hidden"),eJ(),eq()}),eW.addEventListener("submit",t=>{t.preventDefault(),eD.replaceChildren(),ez(eG.value)}),eW.addEventListener("change",()=>{e$.classList.add("is-hidden")}),eD.addEventListener("click",t=>{if("IMG"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eH(e)}),eD.addEventListener("click",t=>{if("BUTTON"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eV(e)});//# sourceMappingURL=index.71a47f9e.js.map
 
-//# sourceMappingURL=index.241df537.js.map
+//# sourceMappingURL=index.71a47f9e.js.map
