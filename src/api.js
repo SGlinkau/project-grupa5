@@ -3,6 +3,7 @@ import axios from 'axios';
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
+export const searchError = document.querySelector('.not-found');
 
 //nowe
 const genreIdToName = {};
@@ -62,7 +63,13 @@ export async function getByTitle(title) {
         },
       }
     );
-    moviesByTitle.data.results.forEach(item => {
+    const array = moviesByTitle.data.results;
+
+    if (array.length === 0) {
+      searchError.classList.remove('is-hidden');
+    }
+
+    array.forEach(item => {
       //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
@@ -149,10 +156,9 @@ export async function getGenres() {
   }
 }
 
-
 export async function getTrailer(movieId) {
-  let modal; 
-  let iframe; 
+  let modal;
+  let iframe;
 
   try {
     const trailer = await axios.get(
@@ -180,11 +186,10 @@ export async function getTrailer(movieId) {
           const closeButton = document.createElement('button');
           closeButton.innerHTML = 'X';
           closeButton.addEventListener('click', () => {
-            
             modal.style.display = 'none';
 
             document.body.classList.remove('modal-open');
-            
+
             if (iframe) {
               iframe.src = '';
             }
@@ -192,8 +197,8 @@ export async function getTrailer(movieId) {
           modal.appendChild(closeButton);
 
           iframe = document.createElement('iframe');
-          iframe.width = '800'; 
-          iframe.height = '450'; 
+          iframe.width = '800';
+          iframe.height = '450';
           iframe.allowFullscreen = true;
           modal.appendChild(iframe);
 
