@@ -1,0 +1,3 @@
+let e=()=>{let e=document.getElementById("progress");document.getElementById("progress-value");let n=document.documentElement.scrollTop,t=Math.round(100*n/(document.documentElement.scrollHeight-document.documentElement.clientHeight));n>100?e.style.display="grid":e.style.display="none",e.addEventListener("click",()=>{(function(){let e=document.documentElement.scrollTop,n=performance.now();requestAnimationFrame(function t(o){let l=o-n;document.documentElement.scrollTop=e+(0-e)*Math.min(l/300,1),l<300&&requestAnimationFrame(t)})})()}),e.style.background=`conic-gradient(#03ca65 ${t}%, #d7d7d7 ${t}%)`};window.onscroll=e,window.onload=e;//# sourceMappingURL=index.6eda3e45.js.map
+
+//# sourceMappingURL=index.6eda3e45.js.map
