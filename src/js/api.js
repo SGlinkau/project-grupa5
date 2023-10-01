@@ -29,9 +29,6 @@ export async function getPopular() {
         'beforeend',
         `<li class='movie-box'>
         <a class='movie-box__link'>
-        <button class='movie-box__trailer-button' type='button' id=${
-          item.id
-        }>Trailer</button>
         <img class='movie-box__poster' id=${
           item.id
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
@@ -69,9 +66,6 @@ export async function getByTitle(title) {
         'beforeend',
         `<li class='movie-box'>
         <a class='movie-box__link'>
-        <button class='movie-box__trailer-button' type='button' id=${
-          item.id
-        }>Trailer</button>
         <img class='movie-box__poster' id=${
           item.id
         } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />

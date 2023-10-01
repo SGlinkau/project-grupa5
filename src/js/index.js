@@ -1,4 +1,4 @@
-import './main.scss';
+// import '../main.scss';
 import { getPopular } from './api.js';
 import { getByTitle } from './api.js';
 import { getDetails } from './api.js';
