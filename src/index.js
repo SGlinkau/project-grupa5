@@ -5,7 +5,7 @@ import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
-
+import { loadProducts } from './pagin.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
@@ -18,7 +18,8 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
   moviesList.replaceChildren();
-  getByTitle(input.value);
+  // getByTitle(input.value);
+  loadProducts();
 });
 
 moviesList.addEventListener('click', e => {
@@ -36,3 +37,5 @@ moviesList.addEventListener('click', e => {
   const id = e.target.getAttribute('id');
   getTrailer(id);
 });
+
+// drawPages(total_pages);
