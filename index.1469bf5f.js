@@ -15,7 +15,7 @@ const{toString:u}=Object.prototype,{getPrototypeOf:f}=Object,l=(e=Object.create(
  * @returns {any}
  */function S(t,e,{allOwnKeys:r=!1}={}){let n,i;// Don't bother if no value provided
 if(null!=t){if("object"!=typeof t&&/*eslint no-param-reassign:0*/(t=[t]),p(t))for(n=0,i=t.length;n<i;n++)e.call(null,t[n],n,t);else{let i;// Iterate over object keys
-let o=r?Object.getOwnPropertyNames(t):Object.keys(t),s=o.length;for(n=0;n<s;n++)i=o[n],e.call(null,t[i],i,t)}}}function T(t,e){let r;e=e.toLowerCase();let n=Object.keys(t),i=n.length;for(;i-- >0;)if(e===(r=n[i]).toLowerCase())return r;return null}const U=/*eslint no-undef:0*/"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:s,_=t=>!d(t)&&t!==U,C=(r="undefined"!=typeof Uint8Array&&f(Uint8Array),t=>r&&t instanceof r),x=c("HTMLFormElement"),L=(({hasOwnProperty:t})=>(e,r)=>t.call(e,r))(Object.prototype),I=c("RegExp"),N=(t,e)=>{let r=Object.getOwnPropertyDescriptors(t),n={};S(r,(r,i)=>{let o;!1!==(o=e(r,i,t))&&(n[i]=o||r)}),Object.defineProperties(t,n)},j="abcdefghijklmnopqrstuvwxyz",P="0123456789",F={DIGIT:P,ALPHA:j,ALPHA_DIGIT:j+j.toUpperCase()+P},k=c("AsyncFunction");var D={isArray:p,isArrayBuffer:g,isBuffer:/**
+let o=r?Object.getOwnPropertyNames(t):Object.keys(t),s=o.length;for(n=0;n<s;n++)i=o[n],e.call(null,t[i],i,t)}}}function T(t,e){let r;e=e.toLowerCase();let n=Object.keys(t),i=n.length;for(;i-- >0;)if(e===(r=n[i]).toLowerCase())return r;return null}const U=/*eslint no-undef:0*/"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:s,_=t=>!d(t)&&t!==U,L=(r="undefined"!=typeof Uint8Array&&f(Uint8Array),t=>r&&t instanceof r),C=c("HTMLFormElement"),x=(({hasOwnProperty:t})=>(e,r)=>t.call(e,r))(Object.prototype),I=c("RegExp"),N=(t,e)=>{let r=Object.getOwnPropertyDescriptors(t),n={};S(r,(r,i)=>{let o;!1!==(o=e(r,i,t))&&(n[i]=o||r)}),Object.defineProperties(t,n)},j="abcdefghijklmnopqrstuvwxyz",P="0123456789",F={DIGIT:P,ALPHA:j,ALPHA_DIGIT:j+j.toUpperCase()+P},k=c("AsyncFunction");var D={isArray:p,isArrayBuffer:g,isBuffer:/**
  * Determine if a value is a Buffer
  *
  * @param {*} val The value to test
@@ -28,7 +28,7 @@ let o=r?Object.getOwnPropertyNames(t):Object.keys(t),s=o.length;for(n=0;n<s;n++)
  * @param {*} val The value to test
  *
  * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
- */function(t){return"undefined"!=typeof ArrayBuffer&&ArrayBuffer.isView?ArrayBuffer.isView(t):t&&t.buffer&&g(t.buffer)},isString:y,isNumber:b,isBoolean:t=>!0===t||!1===t,isObject:w,isPlainObject:E,isUndefined:d,isDate:v,isFile:A,isBlob:O,isRegExp:I,isFunction:m,isStream:t=>w(t)&&m(t.pipe),isURLSearchParams:B,isTypedArray:C,isFileList:R,forEach:S,merge:/**
+ */function(t){return"undefined"!=typeof ArrayBuffer&&ArrayBuffer.isView?ArrayBuffer.isView(t):t&&t.buffer&&g(t.buffer)},isString:y,isNumber:b,isBoolean:t=>!0===t||!1===t,isObject:w,isPlainObject:E,isUndefined:d,isDate:v,isFile:A,isBlob:O,isRegExp:I,isFunction:m,isStream:t=>w(t)&&m(t.pipe),isURLSearchParams:B,isTypedArray:L,isFileList:R,forEach:S,merge:/**
  * Accepts varargs expecting each argument to be an object, then
  * immutably merges the properties of each object and returns result.
  *
@@ -46,7 +46,7 @@ let o=r?Object.getOwnPropertyNames(t):Object.keys(t),s=o.length;for(n=0;n<s;n++)
  *
  * @returns {Object} Result of all merge properties
  */function t(){let{caseless:e}=_(this)&&this||{},r={},n=(n,i)=>{let o=e&&T(r,i)||i;E(r[o])&&E(n)?r[o]=t(r[o],n):E(n)?r[o]=t({},n):p(n)?r[o]=n.slice():r[o]=n};for(let t=0,e=arguments.length;t<e;t++)arguments[t]&&S(arguments[t],n);return r},extend:(t,e,r,{allOwnKeys:n}={})=>(S(e,(e,n)=>{r&&m(e)?t[n]=a(e,r):t[n]=e},{allOwnKeys:n}),t),trim:t=>t.trim?t.trim():t.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,""),stripBOM:t=>(65279===t.charCodeAt(0)&&(t=t.slice(1)),t),inherits:(t,e,r,n)=>{t.prototype=Object.create(e.prototype,n),t.prototype.constructor=t,Object.defineProperty(t,"super",{value:e.prototype}),r&&Object.assign(t.prototype,r)},toFlatObject:(t,e,r,n)=>{let i,o,s;let a={};// eslint-disable-next-line no-eq-null,eqeqeq
-if(e=e||{},null==t)return e;do{for(o=(i=Object.getOwnPropertyNames(t)).length;o-- >0;)s=i[o],(!n||n(s,t,e))&&!a[s]&&(e[s]=t[s],a[s]=!0);t=!1!==r&&f(t)}while(t&&(!r||r(t,e))&&t!==Object.prototype)return e},kindOf:l,kindOfTest:c,endsWith:(t,e,r)=>{t=String(t),(void 0===r||r>t.length)&&(r=t.length),r-=e.length;let n=t.indexOf(e,r);return -1!==n&&n===r},toArray:t=>{if(!t)return null;if(p(t))return t;let e=t.length;if(!b(e))return null;let r=Array(e);for(;e-- >0;)r[e]=t[e];return r},forEachEntry:(t,e)=>{let r;let n=t&&t[Symbol.iterator],i=n.call(t);for(;(r=i.next())&&!r.done;){let n=r.value;e.call(t,n[0],n[1])}},matchAll:(t,e)=>{let r;let n=[];for(;null!==(r=t.exec(e));)n.push(r);return n},isHTMLForm:x,hasOwnProperty:L,hasOwnProp:L,reduceDescriptors:N,freezeMethods:t=>{N(t,(e,r)=>{// skip restricted props in strict mode
+if(e=e||{},null==t)return e;do{for(o=(i=Object.getOwnPropertyNames(t)).length;o-- >0;)s=i[o],(!n||n(s,t,e))&&!a[s]&&(e[s]=t[s],a[s]=!0);t=!1!==r&&f(t)}while(t&&(!r||r(t,e))&&t!==Object.prototype)return e},kindOf:l,kindOfTest:c,endsWith:(t,e,r)=>{t=String(t),(void 0===r||r>t.length)&&(r=t.length),r-=e.length;let n=t.indexOf(e,r);return -1!==n&&n===r},toArray:t=>{if(!t)return null;if(p(t))return t;let e=t.length;if(!b(e))return null;let r=Array(e);for(;e-- >0;)r[e]=t[e];return r},forEachEntry:(t,e)=>{let r;let n=t&&t[Symbol.iterator],i=n.call(t);for(;(r=i.next())&&!r.done;){let n=r.value;e.call(t,n[0],n[1])}},matchAll:(t,e)=>{let r;let n=[];for(;null!==(r=t.exec(e));)n.push(r);return n},isHTMLForm:C,hasOwnProperty:x,hasOwnProp:x,reduceDescriptors:N,freezeMethods:t=>{N(t,(e,r)=>{// skip restricted props in strict mode
 if(m(t)&&-1!==["arguments","caller","callee"].indexOf(r))return!1;let n=t[r];if(m(n)){if(e.enumerable=!1,"writable"in e){e.writable=!1;return}e.set||(e.set=()=>{throw Error("Can not rewrite read-only method '"+r+"'")})}})},toObjectSet:(t,e)=>{let r={};return(t=>{t.forEach(t=>{r[t]=!0})})(p(t)?t:String(t).split(e)),r},toCamelCase:t=>t.toLowerCase().replace(/[-_\s]([a-z\d])(\w*)/g,function(t,e,r){return e.toUpperCase()+r}),noop:()=>{},toFiniteNumber:(t,e)=>Number.isFinite(t=+t)?t:e,findKey:T,global:U,isContextDefined:_,ALPHABET:F,generateString:(t=16,e=F.ALPHA_DIGIT)=>{let r="",{length:n}=e;for(;t--;)r+=e[Math.random()*n|0];return r},isSpecCompliantForm:/**
  * If the thing is a FormData object, return true, otherwise return false.
  *
@@ -200,19 +200,19 @@ for(;t.length%4!=0;)t+="=";return t}(t))}function tS(t,e,r,n){let i;for(i=0;i<n&
 function tT(t,e){return t instanceof e||null!=t&&null!=t.constructor&&null!=t.constructor.name&&t.constructor.name===e.name}// Create lookup table for `toString('hex')`
 // See: https://github.com/feross/buffer/issues/219
 const tU=function(){let t="0123456789abcdef",e=Array(256);for(let r=0;r<16;++r){let n=16*r;for(let i=0;i<16;++i)e[n+i]=t[r]+t[i]}return e}();// Return not function with Error if BigInt not supported
-function t_(t){return"undefined"==typeof BigInt?tC:t}function tC(){throw Error("BigInt not supported")}/**
+function t_(t){return"undefined"==typeof BigInt?tL:t}function tL(){throw Error("BigInt not supported")}/**
  * Determines if the given thing is a array or js object.
  *
  * @param {string} thing - The object or array to be visited.
  *
  * @returns {boolean}
- */function tx(t){return D.isPlainObject(t)||D.isArray(t)}/**
+ */function tC(t){return D.isPlainObject(t)||D.isArray(t)}/**
  * It removes the brackets from the end of a string
  *
  * @param {string} key - The key of the parameter.
  *
  * @returns {string} the key without the brackets.
- */function tL(t){return D.endsWith(t,"[]")?t.slice(0,-2):t}/**
+ */function tx(t){return D.endsWith(t,"[]")?t.slice(0,-2):t}/**
  * It takes a path, a key, and a boolean, and returns a string
  *
  * @param {string} path - The path to the current key.
@@ -221,7 +221,7 @@ function t_(t){return"undefined"==typeof BigInt?tC:t}function tC(){throw Error("
  *
  * @returns {string} The path to the current key.
  */function tI(t,e,r){return t?t.concat(e).map(function(t,e){return(// eslint-disable-next-line no-param-reassign
-t=tL(t),!r&&e?"["+t+"]":t)}).join(r?".":""):e}const tN=D.toFlatObject(D,{},null,function(t){return/^is[A-Z]/.test(t)});var tj=/**
+t=tx(t),!r&&e?"["+t+"]":t)}).join(r?".":""):e}const tN=D.toFlatObject(D,{},null,function(t){return/^is[A-Z]/.test(t)});var tj=/**
  * Convert a data object to FormData
  *
  * @param {Object} obj
@@ -255,8 +255,8 @@ return!D.isUndefined(e[t])});let n=r.metaTokens,i=r.visitor||l,o=r.dots,s=r.inde
    * @returns {boolean} return true to visit the each prop of the value recursively
    */function l(t,r,i){let a=t;if(t&&!i&&"object"==typeof t){if(D.endsWith(r,"{}"))// eslint-disable-next-line no-param-reassign
 r=n?r:r.slice(0,-2),// eslint-disable-next-line no-param-reassign
-t=JSON.stringify(t);else{var u;if(D.isArray(t)&&(u=t,D.isArray(u)&&!u.some(tx))||(D.isFileList(t)||D.endsWith(r,"[]"))&&(a=D.toArray(t)))return(// eslint-disable-next-line no-param-reassign
-r=tL(r),a.forEach(function(t,n){D.isUndefined(t)||null===t||e.append(!0===s?tI([r],n,o):null===s?r:r+"[]",f(t))}),!1)}}return!!tx(t)||(e.append(tI(i,r,o),f(t)),!1)}let c=[],h=Object.assign(tN,{defaultVisitor:l,convertValue:f,isVisitable:tx});if(!D.isObject(t))throw TypeError("data must be an object");return!function t(r,n){if(!D.isUndefined(r)){if(-1!==c.indexOf(r))throw Error("Circular reference detected in "+n.join("."));c.push(r),D.forEach(r,function(r,o){let s=!(D.isUndefined(r)||null===r)&&i.call(e,r,D.isString(o)?o.trim():o,n,h);!0===s&&t(r,n?n.concat(o):[o])}),c.pop()}}(t),e};/**
+t=JSON.stringify(t);else{var u;if(D.isArray(t)&&(u=t,D.isArray(u)&&!u.some(tC))||(D.isFileList(t)||D.endsWith(r,"[]"))&&(a=D.toArray(t)))return(// eslint-disable-next-line no-param-reassign
+r=tx(r),a.forEach(function(t,n){D.isUndefined(t)||null===t||e.append(!0===s?tI([r],n,o):null===s?r:r+"[]",f(t))}),!1)}}return!!tC(t)||(e.append(tI(i,r,o),f(t)),!1)}let c=[],h=Object.assign(tN,{defaultVisitor:l,convertValue:f,isVisitable:tC});if(!D.isObject(t))throw TypeError("data must be an object");return!function t(r,n){if(!D.isUndefined(r)){if(-1!==c.indexOf(r))throw Error("Circular reference detected in "+n.join("."));c.push(r),D.forEach(r,function(r,o){let s=!(D.isUndefined(r)||null===r)&&i.call(e,r,D.isString(o)?o.trim():o,n,h);!0===s&&t(r,n?n.concat(o):[o])}),c.pop()}}(t),e};/**
  * It encodes a string by replacing all characters that are not in the unreserved set with
  * their percent-encoded equivalents
  *
@@ -493,7 +493,7 @@ ev.isAxiosError=function(t){return D.isObject(t)&&!0===t.isAxiosError},// Expose
 ev.mergeConfig=eh,ev.AxiosHeaders=t5,ev.formToJSON=t=>tK(D.isHTMLForm(t)?new FormData(t):t),ev.getAdapter=eu.getAdapter,ev.HttpStatusCode=eE,ev.default=ev;// This module is intended to unwrap Axios default export as named.
 // Keep top-level export same with static properties
 // so that it can keep same with es module or cjs
-const{Axios:eA,AxiosError:eO,CanceledError:eR,isCancel:eB,CancelToken:eS,VERSION:eT,all:eU,Cancel:e_,isAxiosError:eC,spread:ex,toFormData:eL,AxiosHeaders:eI,HttpStatusCode:eN,formToJSON:ej,getAdapter:eP,mergeConfig:eF}=ev,ek=document.querySelector(".header"),eD=document.createElement("ul");eD.classList.add("movies-list");const e$=document.querySelector(".not-found"),eM={};async function eq(){try{ek.after(eD);let t=await ev.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});t.data.results.forEach(t=>{//nowe
+const{Axios:eA,AxiosError:eO,CanceledError:eR,isCancel:eB,CancelToken:eS,VERSION:eT,all:eU,Cancel:e_,isAxiosError:eL,spread:eC,toFormData:ex,AxiosHeaders:eI,HttpStatusCode:eN,formToJSON:ej,getAdapter:eP,mergeConfig:eF}=ev,ek=document.querySelector(".header"),eD=document.createElement("ul");eD.classList.add("movies-list");const e$=document.querySelector(".not-found"),eM={};async function eq(){try{ek.after(eD);let t=await ev.get("https://api.themoviedb.org/3/trending/movie/day",{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}});t.data.results.forEach(t=>{//nowe
 let e=t.genre_ids.map(t=>eM[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
         <a class='movie-box__link'>
         <button class='movie-box__trailer-button' type='button' id=${t.id}>Trailer</button>
@@ -501,22 +501,26 @@ let e=t.genre_ids.map(t=>eM[t]);eD.insertAdjacentHTML("beforeend",`<li class='mo
         </a>
         <h2 class='movie-box__title'>${t.title}</h2>
         <p class='movie-box__info'>${e.join(", ")} | ${t.release_date.slice(0,4)}</p>
-        </li>`)})}catch{}}async function ez(t){try{let e=await ev.get("https://api.themoviedb.org/3/search/movie",{params:{query:`${t}`,api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),r=e.data.results;0===r.length&&e$.classList.remove("is-hidden"),r.forEach(t=>{//nowe
-let e=t.genre_ids.map(t=>eM[t]);eD.insertAdjacentHTML("beforeend",`<li class='movie-box'>
-        <a class='movie-box__link'>
-        <button class='movie-box__trailer-button' type='button' id=${t.id}>Trailer</button>
-        <img class='movie-box__poster' id=${t.id} src='https://www.themoviedb.org/t/p/w500${t.poster_path}' />
-        </a>
-        <h2 class='movie-box__title'>${t.title}</h2>
-        <p class='movie-box__info'>${e.join(", ")} | ${t.release_date.slice(0,4)}</p>
-        </li>`)})}catch{}}async function eH(t){try{let e=document.createElement("div");eD.after(e);let r=await ev.get(`https://api.themoviedb.org/3/movie/${t}`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),n=[];r.data.genres.forEach(t=>{let e=t.name;n.push(e)}),e.insertAdjacentHTML("afterbegin",`<img src='https://www.themoviedb.org/t/p/w500${r.data.poster_path}'/>
+        </li>`)})}catch{}}async function ez(t){try{let e=document.createElement("div");eD.after(e);let r=await ev.get(`https://api.themoviedb.org/3/movie/${t}`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),n=[];r.data.genres.forEach(t=>{let e=t.name;n.push(e)}),e.insertAdjacentHTML("afterbegin",`<img src='https://www.themoviedb.org/t/p/w500${r.data.poster_path}'/>
       <h2>${r.data.title}</h2>
       <p>Vote / Votes ${r.data.vote_average} / ${r.data.vote_count}</p>
       <p>Popularity ${r.data.popularity}</p>
       <p>Original Title ${r.data.original_title}</p>
       <p>Genre ${[...n]}</p>
-    <p>ABOUT: ${r.data.overview}</p>`)}catch{}}async function eJ(){try{//nowe
+    <p>ABOUT: ${r.data.overview}</p>`)}catch{}}async function eH(){try{//nowe
 let t=await ev.get("https://api.themoviedb.org/3/genre/movie/list",{params:{language:"en",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),e=t.data.genres;e.forEach(t=>{eM[t.id]=t.name});// console.log(genres.data);
-}catch{}}async function eV(t){let e,r;try{let n=await ev.get(`https://api.themoviedb.org/3/movie/${t}/videos`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),i=n.data.results;for(let t of i)if("Trailer"===t.type&&"YouTube"===t.site){let n=t.key;if(!e){(e=document.createElement("div")).id="trailer-modal";let t=document.createElement("button");t.innerHTML="X",t.addEventListener("click",()=>{e.style.display="none",document.body.classList.remove("modal-open"),r&&(r.src="")}),e.appendChild(t),(r=document.createElement("iframe")).width="800",r.height="450",r.allowFullscreen=!0,e.appendChild(r),document.body.appendChild(e),document.body.classList.add("modal-open")}r.src=`https://www.youtube.com/embed/${n}`,e.style.display="block";break}}catch(t){console.log(t)}}const eW=document.querySelector(".header__form"),eG=document.querySelector("#input");window.addEventListener("load",()=>{e$.classList.add("is-hidden"),eJ(),eq()}),eW.addEventListener("submit",t=>{t.preventDefault(),eD.replaceChildren(),ez(eG.value)}),eW.addEventListener("change",()=>{e$.classList.add("is-hidden")}),eD.addEventListener("click",t=>{if("IMG"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eH(e)}),eD.addEventListener("click",t=>{if("BUTTON"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eV(e)});//# sourceMappingURL=index.71a47f9e.js.map
+}catch{}}async function eJ(t){let e,r;try{let n=await ev.get(`https://api.themoviedb.org/3/movie/${t}/videos`,{params:{language:"en-US",api_key:"c90cdec037818042646f6ab3cec9ea66"},headers:{accept:"application/json"}}),i=n.data.results;for(let t of i)if("Trailer"===t.type&&"YouTube"===t.site){let n=t.key;if(!e){(e=document.createElement("div")).id="trailer-modal";let t=document.createElement("button");t.innerHTML="X",t.addEventListener("click",()=>{e.style.display="none",document.body.classList.remove("modal-open"),r&&(r.src="")}),e.appendChild(t),(r=document.createElement("iframe")).width="800",r.height="450",r.allowFullscreen=!0,e.appendChild(r),document.body.appendChild(e),document.body.classList.add("modal-open")}r.src=`https://www.youtube.com/embed/${n}`,e.style.display="block";break}}catch(t){console.log(t)}}const eV=document.querySelector(".header"),eW=document.createElement("ul");eW.classList.add("movies-list");const eG={};function eK(t=1){let e=input.value;(function({page:t,query:e}){let r=new URLSearchParams({page:t,query:e});return new Promise((t,e)=>{fetch(`https://api.themoviedb.org/3/search/movie?${r}&api_key=c90cdec037818042646f6ab3cec9ea66`).then(t=>(t.ok||e(Error("Request failed")),t.json())).then(e=>t(e)).catch(t=>e(t))})})({page:t,query:e}).then(t=>{eV.after(eW),t.results.forEach(t=>{//nowe
+let e=t.genre_ids.map(t=>eG[t]);eW.insertAdjacentHTML("beforeend",`<li class='movie-box'>
+        <a class='movie-box__link'>
+        <button class='movie-box__trailer-button' type='button' id=${t.id}>Trailer</button>
+        <img class='movie-box__poster' id=${t.id} src='https://www.themoviedb.org/t/p/w500${t.poster_path}' />
+        </a>
+        <h2 class='movie-box__title'>${t.title}</h2>
+        <p class='movie-box__info'>${e.join(", ")} | ${t.release_date.slice(0,4)}</p>
+        </li>`),console.log(t.release_date)}),function(t){let e=[];for(let r=1;r<=t.total_pages;r++){let n=document.createElement("button");n.innerText=r,n.dataset.page=r,t.page===r&&n.classList.add("page-button--active"),n.addEventListener("click",eY),e.push(n)}pages.innerHTML="",pages.append(...e)}(t)});// .catch(err => {
+//   alert(err);
+// });
+}function eY(){eK(this.dataset.page)}const eX=document.querySelector(".header__form");document.querySelector("#input"),window.addEventListener("load",()=>{e$.classList.add("is-hidden"),eH(),eq()}),eX.addEventListener("submit",t=>{t.preventDefault(),eD.replaceChildren(),eK()}),eX.addEventListener("change",()=>{e$.classList.add("is-hidden")}),eX.addEventListener("change",()=>{e$.classList.add("is-hidden")}),eD.addEventListener("click",t=>{if("IMG"!==t.target.nodeName)return;let e=t.target.getAttribute("id");ez(e)}),eD.addEventListener("click",t=>{if("BUTTON"!==t.target.nodeName)return;let e=t.target.getAttribute("id");eJ(e)});// drawPages(total_pages);
+//# sourceMappingURL=index.1469bf5f.js.map
 
-//# sourceMappingURL=index.71a47f9e.js.map
+//# sourceMappingURL=index.1469bf5f.js.map
