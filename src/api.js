@@ -116,7 +116,8 @@ export async function getDetails(movieId) {
     const genres = document.getElementById('genre');
     const about = document.getElementById('about');
     const thumbnail = document.getElementById('thumbnail');
-    const movieThumbnails = document.getElementsByClassName('movie-box');
+    const movieThumbnails =
+      document.getElementsByClassName('movie-box__poster');
     const icon = document.querySelector('.modal__icon');
     const body = document.querySelector('body');
 
