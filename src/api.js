@@ -4,8 +4,8 @@ const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
 export const searchError = document.querySelector('.not-found');
+export const pageButtons = document.querySelector('.page-buttons');
 
-//nowe
 const genreIdToName = {};
 
 export async function getPopular() {
@@ -24,7 +24,6 @@ export async function getPopular() {
       }
     );
     popular.data.results.forEach(item => {
-      //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
         'beforeend',
@@ -49,7 +48,7 @@ export async function getPopular() {
   }
 }
 
-export async function getByTitle(title) {
+export async function getByTitle(title, pageNumber) {
   try {
     const moviesByTitle = await axios.get(
       'https://api.themoviedb.org/3/search/movie',
@@ -57,6 +56,7 @@ export async function getByTitle(title) {
         params: {
           query: `${title}`,
           api_key: 'c90cdec037818042646f6ab3cec9ea66',
+          page: `${pageNumber}`,
         },
         headers: {
           accept: 'application/json',
@@ -70,7 +70,6 @@ export async function getByTitle(title) {
     }
 
     array.forEach(item => {
-      //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
         'beforeend',
@@ -90,6 +89,17 @@ export async function getByTitle(title) {
         </li>`
       );
     });
+
+    if (moviesByTitle.data.total_pages > 1) {
+      for (let i = 1; i <= moviesByTitle.data.total_pages; i++) {
+        const pageButton = document.createElement('button');
+        pageButtons.append(pageButton);
+        pageButton.textContent = `${i}`;
+        pageButton.classList.add('page-button');
+
+        console.log(i, pageButton);
+      }
+    }
   } catch {
     error => console.log(error);
   }
@@ -114,6 +124,7 @@ export async function getDetails(movieId) {
       let genresName = item.name;
       genresNames.push(genresName);
     });
+
     // wyswietlanie modala z poprawnymi danymi
     const modal = document.querySelector('.modal');
     const name = document.querySelector('.modal__title');
@@ -177,7 +188,6 @@ export async function getDetails(movieId) {
 
 export async function getGenres() {
   try {
-    //nowe
     const genresResponse = await axios.get(
       'https://api.themoviedb.org/3/genre/movie/list',
       {
@@ -187,12 +197,10 @@ export async function getGenres() {
         },
       }
     );
-    //nowe
     const genres = genresResponse.data.genres;
     genres.forEach(genre => {
       genreIdToName[genre.id] = genre.name;
     });
-    // console.log(genres.data);
   } catch {
     error => console.log(error);
   }
