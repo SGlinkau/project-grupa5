@@ -107,20 +107,61 @@ export async function getDetails(movieId) {
       let genresName = item.name;
       genresNames.push(genresName);
     });
-    movieBox.insertAdjacentHTML(
-      'afterbegin',
-      `<img src='https://www.themoviedb.org/t/p/w500${
-        details.data.poster_path
-      }'/>
-      <h2>${details.data.title}</h2>
-      <p>Vote / Votes ${details.data.vote_average} / ${
-        details.data.vote_count
-      }</p>
-      <p>Popularity ${details.data.popularity}</p>
-      <p>Original Title ${details.data.original_title}</p>
-      <p>Genre ${[...genresNames]}</p>
-    <p>ABOUT: ${details.data.overview}</p>`
+    // wyswietlanie modala z poprawnymi danymi
+    const modal = document.querySelector('.modal');
+    const name = document.querySelector('.modal__title');
+    const votes = document.getElementById('votes');
+    const popularity = document.getElementById('popularity');
+    const ogtitle = document.getElementById('ogtitle');
+    const genres = document.getElementById('genre');
+    const about = document.getElementById('about');
+    const thumbnail = document.getElementById('thumbnail');
+    const movieThumbnails = document.getElementsByClassName('movie-box');
+    const icon = document.querySelector('.modal__icon');
+    const body = document.querySelector('body');
+
+    function showModal() {
+      modal.classList.remove('is-hidden');
+      modal.classList.add('is-visible');
+      body.classList.add('modal__backdrop');
+    }
+
+    for (const movieThumbnail of movieThumbnails) {
+      movieThumbnail.addEventListener('click', showModal);
+    }
+
+    function hideModal() {
+      modal.classList.add('is-hidden');
+      modal.classList.remove('is-visible');
+      body.classList.remove('modal__backdrop');
+    }
+
+    icon.addEventListener('click', hideModal);
+
+    name.innerHTML = details.data.title;
+    votes.innerHTML = `${details.data.vote_average} / ${details.data.vote_count}`;
+    popularity.innerHTML = details.data.popularity;
+    ogtitle.innerHTML = details.data.original_title;
+    genres.innerHTML = [...genresNames];
+    about.innerHTML = details.data.overview;
+    thumbnail.setAttribute(
+      'src',
+      `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
     );
+    // zakomentowane zeby nie tworzyl sie box pod stroną
+    //  movieBox.insertAdjacentHTML(
+    //       'afterbegin',
+    //       `<img src='https://www.themoviedb.org/t/p/w500${
+    //         details.data.poster_path
+    //       }'/>
+    //       <h2>${details.data.title}</h2>
+    //       <p>Vote / Votes ${details.data.vote_average} / ${
+    //         details.data.vote_count
+    //       }</p>
+    //       <p>Popularity ${details.data.popularity}</p>
+    //       <p>Original Title ${details.data.original_title}</p>
+    //       <p>Genre ${[...genresNames]}</p>
+    //     <p>ABOUT: ${details.data.overview}</p>`
   } catch {
     error => console.log(error);
   }
@@ -149,10 +190,9 @@ export async function getGenres() {
   }
 }
 
-
 export async function getTrailer(movieId) {
-  let modal; 
-  let iframe; 
+  let modal;
+  let iframe;
 
   try {
     const trailer = await axios.get(
@@ -180,11 +220,10 @@ export async function getTrailer(movieId) {
           const closeButton = document.createElement('button');
           closeButton.innerHTML = 'X';
           closeButton.addEventListener('click', () => {
-            
             modal.style.display = 'none';
 
             document.body.classList.remove('modal-open');
-            
+
             if (iframe) {
               iframe.src = '';
             }
@@ -192,8 +231,8 @@ export async function getTrailer(movieId) {
           modal.appendChild(closeButton);
 
           iframe = document.createElement('iframe');
-          iframe.width = '800'; 
-          iframe.height = '450'; 
+          iframe.width = '800';
+          iframe.height = '450';
           iframe.allowFullscreen = true;
           modal.appendChild(iframe);
 

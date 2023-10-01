@@ -1,12 +1,8 @@
-<div class="modal is-hidden">
+<div class="modal is-hidden" id="modal">
   <svg height="30px" width="30px" class="modal__icon">
     <use href="/src/images/sprite.svg#close"></use>
   </svg>
-  <img
-    src="https://catamazing.com/cdn/shop/files/catshark.jpg?v=1649869148"
-    alt="Movie thumbnail"
-    class="modal__thumbnail"
-  />
+  <img alt="Movie thumbnail" class="modal__thumbnail" id="thumbnail" />
   <div class="modal__aside">
     <p class="modal__title modal--uppercase">placeholder</p>
 
@@ -18,22 +14,22 @@
         <li class="modal__movie-stats__item">Genre</li>
       </ul>
       <ul class="modal__movie-stats-value">
-        <li class="modal__movie-stats-value__item">placeholder</li>
-        <li class="modal__movie-stats-value__item">placeholder</li>
-        <li class="modal__movie-stats-value__item modal--uppercase">
+        <li class="modal__movie-stats-value__item" id="votes">placeholder</li>
+        <li class="modal__movie-stats-value__item" id="popularity">
+          placeholde
+        </li>
+        <li
+          class="modal__movie-stats-value__item modal--uppercase"
+          id="ogtitle"
+        >
           placeholder
         </li>
-        <li class="modal__movie-stats-value__item">placeholder</li>
+        <li class="modal__movie-stats-value__item" id="genre">placeholder</li>
       </ul>
     </section>
 
     <p class="modal__about modal--uppercase">about</p>
-    <article class="modal__about--content">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
-      accusamus aperiam optio culpa quas tenetur inventore magni ipsa corrupti
-      asperiores, aspernatur, debitis distinctio? Voluptate eveniet libero at
-      assumenda. Quos, aut.
-    </article>
+    <article class="modal__about--content" id="about"></article>
     <div class="modal__btns">
       <button
         type="button"
