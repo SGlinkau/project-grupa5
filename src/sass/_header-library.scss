@@ -5,7 +5,7 @@
   height: 230px;
   background-color: $headerBgColor;
   background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(./images/header__mobile-bg.png);
+    url(../images/header__mobile-bg.png);
   background-size: cover;
 }
 
@@ -15,7 +15,7 @@
   (min-resolution: 2dppx) {
   .library {
     background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(./images/header__mobile-bg@x2.png);
+      url(../images/header__mobile-bg@x2.png);
     background-size: cover;
   }
 }
@@ -62,7 +62,7 @@
 
   .library {
     background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(./images/header__tablet-bg.png);
+      url(../images/header__tablet-bg.png);
     background-size: cover;
   }
 
@@ -72,7 +72,7 @@
     (min-resolution: 2dppx) {
     .library {
       background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(./images/header__tablet-bg@x2.png);
+        url(../images/header__tablet-bg@x2.png);
       background-size: cover;
     }
   }
@@ -83,7 +83,7 @@
   }
   .library {
     background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(./images/header__desktop-bg.png);
+      url(../images/header__desktop-bg.png);
     background-size: cover;
   }
 
@@ -93,7 +93,7 @@
     (min-resolution: 2dppx) {
     .library {
       background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-        url(./images/header__desktop-bg@x2.png);
+        url(../images/header__desktop-bg@x2.png);
       background-size: cover;
     }
   }

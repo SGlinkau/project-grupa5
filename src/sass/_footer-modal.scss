@@ -23,7 +23,7 @@
     position: absolute;
     background-color: $headerBgColor;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-      url(./images/header__mobile-bg.png);
+      url(../images/header__mobile-bg.png);
     background-size: cover;
     @media screen and (min-width: 1024px) {
       top: 15%;

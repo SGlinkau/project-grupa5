@@ -1,13 +1,14 @@
-@import 'scss/variables';
-@import 'scss/container.scss';
-@import 'scss/header';
-@import 'scss/headerLibrary';
-@import 'scss/footer';
-@import 'scss/footer-modal';
-@import 'scss/movies-list';
-@import 'scss/to-top';
-@import 'scss/trailer.scss';
-@import 'scss/modal';
+@import './variables';
+@import './container';
+@import './header';
+@import './header-library';
+@import './footer';
+@import './footer-modal';
+@import './movies-list';
+@import './modal';
+@import './to-top';
+@import './trailer';
+
 body {
   box-sizing: border-box;
   font-family: $mainFont;
