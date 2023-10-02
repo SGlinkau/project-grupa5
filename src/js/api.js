@@ -1,16 +1,14 @@
 import axios from 'axios';
 
 const header = document.querySelector('.header');
-export const moviesList = document.createElement('ul');
-moviesList.classList.add('movies-list');
-export const searchError = document.querySelector('.not-found');
-
-//nowe
+export const moviesList = document.querySelector('.movies-list');
+const searchError = document.querySelector('.not-found');
 const genreIdToName = {};
 
+
+// Nowa funkcja getPopular()
 export async function getPopular() {
   try {
-    header.after(moviesList);
     const popular = await axios.get(
       'https://api.themoviedb.org/3/trending/movie/day',
       {
@@ -23,26 +21,29 @@ export async function getPopular() {
         },
       }
     );
-    popular.data.results.forEach(item => {
-      //nowe
+
+    moviesList.innerHTML = '';
+    popular.data.results.forEach((item) => {
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
       moviesList.insertAdjacentHTML(
         'beforeend',
-        `<li class='movie-box'>
-        <a class='movie-box__link'>
-        <img class='movie-box__poster' id=${
-          item.id
-        } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
-        </a>
-        <h2 class='movie-box__title'>${item.title}</h2>
-        <p class='movie-box__info'>${genreNames.join(
-          ', '
-        )} | ${item.release_date.slice(0, 4)}</p>
-        </li>`
+        `
+          <li class='movie-box'>
+            <a class='movie-box__link'>
+              <img class='movie-box__poster' id=${
+                item.id
+              } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
+            </a>
+            <h2 class='movie-box__title'>${item.title}</h2>
+            <p class='movie-box__info'>${genreNames.join(
+              ', '
+            )} | ${item.release_date.slice(0, 4)}</p>
+          </li>
+        `
       );
     });
   } catch {
-    error => console.log(error);
+    console.log(error);
   }
 }
 
