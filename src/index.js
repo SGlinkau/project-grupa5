@@ -5,7 +5,6 @@ import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
-import { loadProducts } from './pagin.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
@@ -19,8 +18,8 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
   moviesList.replaceChildren();
-  // getByTitle(input.value);
-  loadProducts();
+
+  getByTitle(input.value);
 });
 
 form.addEventListener('change', () => {

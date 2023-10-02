@@ -8,6 +8,8 @@ export const searchError = document.querySelector('.not-found');
 //nowe
 const genreIdToName = {};
 
+const pages = document.querySelector('#pages');
+
 export async function getPopular() {
   try {
     header.after(moviesList);
@@ -49,13 +51,14 @@ export async function getPopular() {
   }
 }
 
-export async function getByTitle(title) {
+export async function getByTitle(title, page = 1) {
   try {
     const moviesByTitle = await axios.get(
       'https://api.themoviedb.org/3/search/movie',
       {
         params: {
           query: `${title}`,
+          page: `${page}`,
           api_key: 'c90cdec037818042646f6ab3cec9ea66',
         },
         headers: {
@@ -90,11 +93,33 @@ export async function getByTitle(title) {
         </li>`
       );
     });
+    // nowe Aga od
+
+    const buttons = [];
+    for (let i = 1; i <= moviesByTitle.data.total_pages; i++) {
+      const pageBtn = document.createElement('button');
+      pageBtn.innerText = i;
+      pageBtn.dataset.page = i;
+      if (moviesByTitle.data.page === i) {
+        pageBtn.classList.add('page-button--active');
+      }
+      pageBtn.addEventListener('click', loadProductsButton);
+      buttons.push(pageBtn);
+    }
+    console.log(buttons);
+    pages.innerHTML = '';
+    pages.append(...buttons);
+    //nowe Aga do
   } catch {
     error => console.log(error);
   }
 }
-
+// nowe Aga od
+function loadProductsButton() {
+  moviesList.replaceChildren();
+  getByTitle(input.value, this.dataset.page);
+}
+// nowe Aga do
 export async function getDetails(movieId) {
   try {
     const movieBox = document.createElement('div');
