@@ -1,4 +1,5 @@
 import axios from 'axios';
+import noPosterURL from './images/no-poster.jpg';
 
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
@@ -7,7 +8,6 @@ export const searchError = document.querySelector('.not-found');
 
 //nowe
 const genreIdToName = {};
-
 const pages = document.querySelector('#pages');
 
 export async function getPopular() {
@@ -28,6 +28,11 @@ export async function getPopular() {
     popular.data.results.forEach(item => {
       //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
+
+      const posterSrc = item.poster_path
+        ? `https://www.themoviedb.org/t/p/w500${item.poster_path}`
+        : noPosterURL;
+
       moviesList.insertAdjacentHTML(
         'beforeend',
         `<li class='movie-box'>
@@ -35,9 +40,7 @@ export async function getPopular() {
         <button class='movie-box__trailer-button' type='button' id=${
           item.id
         }>Trailer</button>
-        <img class='movie-box__poster' id=${
-          item.id
-        } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
+        <img class='movie-box__poster' id=${item.id} src='${posterSrc}' />
         </a>
         <h2 class='movie-box__title'>${item.title}</h2>
         <p class='movie-box__info'>${genreNames.join(
@@ -75,6 +78,11 @@ export async function getByTitle(title, page = 1) {
     array.forEach(item => {
       //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
+
+      const posterSrc = item.poster_path
+        ? `https://www.themoviedb.org/t/p/w500${item.poster_path}`
+        : noPosterURL;
+
       moviesList.insertAdjacentHTML(
         'beforeend',
         `<li class='movie-box'>
@@ -82,9 +90,7 @@ export async function getByTitle(title, page = 1) {
         <button class='movie-box__trailer-button' type='button' id=${
           item.id
         }>Trailer</button>
-        <img class='movie-box__poster' id=${
-          item.id
-        } src='https://www.themoviedb.org/t/p/w500${item.poster_path}' />
+        <img class='movie-box__poster' id=${item.id} src='${posterSrc}' />
         </a>
         <h2 class='movie-box__title'>${item.title}</h2>
         <p class='movie-box__info'>${genreNames.join(
@@ -153,6 +159,10 @@ export async function getDetails(movieId) {
     const icon = document.querySelector('.modal__icon');
     const body = document.querySelector('body');
 
+    const posterSrc = details.data.poster_path
+      ? `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
+      : noPosterURL;
+
     function showModal() {
       modal.classList.remove('is-hidden');
       modal.classList.add('is-visible');
@@ -179,7 +189,8 @@ export async function getDetails(movieId) {
     about.innerHTML = details.data.overview;
     thumbnail.setAttribute(
       'src',
-      `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
+      // `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
+      `${posterSrc}`
     );
     // zakomentowane zeby nie tworzyl sie box pod stroną
     //  movieBox.insertAdjacentHTML(
