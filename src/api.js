@@ -1,5 +1,11 @@
 import axios from 'axios';
 import noPosterURL from './images/no-poster.jpg';
+import Notiflix from 'notiflix';
+ 
+function showNoTrailerNotification() {
+  Notiflix.Notify.failure('There is no trailer available for this movie.');
+}
+
 
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
@@ -371,6 +377,8 @@ export async function getTrailer(movieId) {
     );
 
     const movies = trailer.data.results;
+    let trailerFound = false;
+
     for (const movie of movies) {
       if (movie.type === 'Trailer' && movie.site === 'YouTube') {
         const trailerKey = movie.key;
@@ -383,9 +391,7 @@ export async function getTrailer(movieId) {
           closeButton.innerHTML = 'X';
           closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
-
             document.body.classList.remove('modal-open');
-
             if (iframe) {
               iframe.src = '';
             }
@@ -399,16 +405,18 @@ export async function getTrailer(movieId) {
           modal.appendChild(iframe);
 
           document.body.appendChild(modal);
-
           document.body.classList.add('modal-open');
         }
 
         iframe.src = `https://www.youtube.com/embed/${trailerKey}`;
-
         modal.style.display = 'block';
-
+        trailerFound = true;
         break;
       }
+    }
+
+    if (!trailerFound) {
+      showNoTrailerNotification();
     }
   } catch (error) {
     console.log(error);
