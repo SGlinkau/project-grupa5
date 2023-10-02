@@ -14,7 +14,6 @@ window.addEventListener('load', () => {
   getGenres();
   getPopular();
 });
-
 form.addEventListener('submit', e => {
   e.preventDefault();
   moviesList.replaceChildren();

@@ -1,0 +1,31 @@
+.page-button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  font-family: $mainFont;
+  font-weight: $secondFontWieght;
+  line-height: 16.41px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  &__active {
+    background-color: $mainFontColor;
+    color: $secondFontColor;
+  }
+  &:focus {
+    background-color: $mainFontColor;
+    color: $secondFontColor;
+  }
+  &:hover {
+    background-color: $mainFontColor;
+    color: $secondFontColor;
+  }
+}
+.pages {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding-bottom: 60px;
+}
