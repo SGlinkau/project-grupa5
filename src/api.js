@@ -93,22 +93,140 @@ export async function getByTitle(title, page = 1) {
         </li>`
       );
     });
-    // nowe Aga od
 
+    // nowe Aga od
     const buttons = [];
-    for (let i = 1; i <= moviesByTitle.data.total_pages; i++) {
-      const pageBtn = document.createElement('button');
-      pageBtn.innerText = i;
-      pageBtn.dataset.page = i;
-      if (moviesByTitle.data.page === i) {
-        pageBtn.classList.add('page-button--active');
+    if (moviesByTitle.data.total_pages > 1) {
+      // pierwszy przycisk
+
+      const pageBtnFirst = document.createElement('button');
+      pageBtnFirst.innerText = 1;
+      pageBtnFirst.dataset.page = 1;
+      pageBtnFirst.classList.add('page-button');
+      if (moviesByTitle.data.page === 1) {
+        pageBtnFirst.classList.add('page-button__active');
       }
-      pageBtn.addEventListener('click', loadProductsButton);
-      buttons.push(pageBtn);
+      pageBtnFirst.addEventListener('click', loadProductsButton);
+      buttons.push(pageBtnFirst);
+      // pierwszy przycisk koniec
+
+      if (moviesByTitle.data.total_pages > 3) {
+        if (moviesByTitle.data.total_pages <= 8) {
+          for (let i = 2; i < moviesByTitle.data.total_pages; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.innerText = i;
+            pageBtn.dataset.page = i;
+            pageBtn.classList.add('page-button');
+            if (moviesByTitle.data.page === i) {
+              pageBtn.classList.add('page-button__active');
+            }
+            pageBtn.addEventListener('click', loadProductsButton);
+            buttons.push(pageBtn);
+          }
+        } else {
+          let lastButton = '';
+          let firstButton = '';
+          let activButton = '';
+          if (
+            moviesByTitle.data.total_pages > 8 &&
+            moviesByTitle.data.page <= 5
+          ) {
+            for (let i = 2; i < 8; i++) {
+              const pageBtn = document.createElement('button');
+              pageBtn.innerText = i;
+              pageBtn.dataset.page = i;
+              pageBtn.classList.add('page-button');
+              lastButton = 7;
+              if (moviesByTitle.data.page === i) {
+                pageBtn.classList.add('page-button__active');
+              }
+              pageBtn.addEventListener('click', loadProductsButton);
+              buttons.push(pageBtn);
+            }
+            const pageBtnPlus = document.createElement('button');
+            pageBtnPlus.innerText = '...';
+            pageBtnPlus.dataset.page = lastButton + 1;
+            moviesByTitle.data.page = lastButton + 1;
+            pageBtnPlus.classList.add('page-button');
+
+            pageBtnPlus.addEventListener('click', loadProductsButton);
+            buttons.push(pageBtnPlus);
+          } else {
+            activButton = moviesByTitle.data.page;
+
+            if (moviesByTitle.data.page < moviesByTitle.data.total_pages - 4) {
+              firstButton = activButton - 2;
+              const pageBtnMinus = document.createElement('button');
+              pageBtnMinus.innerText = '...';
+              pageBtnMinus.dataset.page = firstButton - 1;
+              pageBtnMinus.classList.add('page-button');
+              pageBtnMinus.addEventListener('click', loadProductsButton);
+              buttons.push(pageBtnMinus);
+              for (let i = activButton - 2; i <= activButton + 2; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.innerText = i;
+                pageBtn.dataset.page = i;
+                pageBtn.classList.add('page-button');
+                lastButton = i;
+                if (moviesByTitle.data.page === i) {
+                  pageBtn.classList.add('page-button__active');
+                }
+                pageBtn.addEventListener('click', loadProductsButton);
+                buttons.push(pageBtn);
+              }
+              const pageBtnPlus = document.createElement('button');
+              pageBtnPlus.innerText = '...';
+              pageBtnPlus.dataset.page = lastButton + 1;
+              pageBtnPlus.classList.add('page-button');
+              pageBtnPlus.addEventListener('click', loadProductsButton);
+              buttons.push(pageBtnPlus);
+            } else {
+              firstButton = activButton - 2;
+              const pageBtnMinus = document.createElement('button');
+              pageBtnMinus.innerText = '...';
+              pageBtnMinus.dataset.page = firstButton - 1;
+              pageBtnMinus.classList.add('page-button');
+              pageBtnMinus.addEventListener('click', loadProductsButton);
+              buttons.push(pageBtnMinus);
+              for (
+                let i = moviesByTitle.data.total_pages - 6;
+                i < moviesByTitle.data.total_pages;
+                i++
+              ) {
+                const pageBtn = document.createElement('button');
+                pageBtn.innerText = i;
+                pageBtn.dataset.page = i;
+                pageBtn.classList.add('page-button');
+                lastButton = i;
+                if (moviesByTitle.data.page === i) {
+                  pageBtn.classList.add('page-button__active');
+                }
+                pageBtn.addEventListener('click', loadProductsButton);
+                buttons.push(pageBtn);
+              }
+            }
+          }
+        }
+      }
+
+      // ostatni przycisk
+      const pageBtnLast = document.createElement('button');
+      pageBtnLast.innerText = moviesByTitle.data.total_pages;
+      pageBtnLast.dataset.page = moviesByTitle.data.total_pages;
+      pageBtnLast.classList.add('page-button');
+      if (moviesByTitle.data.page === moviesByTitle.data.total_pages) {
+        pageBtnLast.classList.add('page-button__active');
+      }
+      pageBtnLast.addEventListener('click', loadProductsButton);
+      buttons.push(pageBtnLast);
+      // ostatni przycisk koniec
+
+      console.log(buttons);
+
+      pages.innerHTML = '';
+      pages.append(...buttons);
     }
-    console.log(buttons);
-    pages.innerHTML = '';
-    pages.append(...buttons);
+
     //nowe Aga do
   } catch {
     error => console.log(error);
