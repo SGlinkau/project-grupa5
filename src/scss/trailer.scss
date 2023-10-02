@@ -21,11 +21,11 @@
 
 #trailer-modal button {
     position: absolute;
-    top: 10px;
+    top: -5px;
     right: 10px;
     background-color: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     color: white;
     cursor: pointer;
     padding: 0;
@@ -63,6 +63,7 @@ body.modal-open::before {
     color: white; 
     border: none;
     padding: 4px 6px; 
+    position: absolute;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
