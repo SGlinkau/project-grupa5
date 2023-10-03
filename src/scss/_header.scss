@@ -161,13 +161,16 @@
 
 .header__form {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .input__icon {
-  height: 12px;
-  width: 12px;
+  height: 16px;
+  width: 16px;
   cursor: pointer;
+  position: relative;
+  right: 10px;
 }
 
 .not-found {
