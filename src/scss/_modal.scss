@@ -166,9 +166,6 @@
 
       &--watched {
         padding: 6px 27px;
-        background-color: $modalButtonColor;
-        color: $secondFontColor;
-        border: none;
 
         @media screen and (min-width: 768px) {
           padding: 0px;
@@ -193,4 +190,10 @@
   left: 0;
   top: 0;
   transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal__btns__btn:hover {
+  background-color: $modalButtonColor;
+  color: $secondFontColor;
+  border: none;
 }

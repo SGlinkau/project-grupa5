@@ -41,15 +41,15 @@
     justify-content: center;
     padding-bottom: 65px;
   }
+  &:focus {
+    background: $mainBgColor;
+    border: none;
+    box-shadow: $libraryBntShadow;
+  }
   &:hover {
     background: $mainBgColor;
     border: none;
-    box-shadow: $libraryBntShadow
-  }
-  &--active {
-    background: $mainBgColor;
-    border: none;
-    box-shadow: $libraryBntShadow
+    box-shadow: $libraryBntShadow;
   }
 }
 
