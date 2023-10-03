@@ -17,22 +17,19 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', e => {
   e.preventDefault();
   moviesList.replaceChildren();
-
   getByTitle(input.value);
 });
 // Szukanie po klilnięciu ikony
 
-const searchInput = document.getElementById('input'); 
-const searchIcon = document.querySelector('[data-search]'); 
-
+const searchInput = document.getElementById('input');
+const searchIcon = document.querySelector('[data-search]');
 
 searchIcon.addEventListener('click', function () {
-  const searchQuery = searchInput.value.trim(); 
+  const searchQuery = searchInput.value.trim();
 
   if (searchQuery !== '') {
-    
     moviesList.replaceChildren();
-    getByTitle(searchQuery); 
+    getByTitle(searchQuery);
   }
 });
 // Koniec szukania ikony
