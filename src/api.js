@@ -103,6 +103,23 @@ export async function getByTitle(title, page = 1) {
     // nowe Aga od
     const buttons = [];
     if (moviesByTitle.data.total_pages > 1) {
+      let activButton = moviesByTitle.data.page;
+
+      const pageBtnPrevious = document.createElement('button');
+      pageBtnPrevious.classList.add('page-button__previous');
+      pageBtnPrevious.classList.add('page-button');
+      pageBtnPrevious.innerText = 1;
+      pageBtnPrevious.dataset.page = moviesByTitle.data.page - 1;
+      if (activButton === 1) {
+        pageBtnPrevious.toggleAttribute('disabled');
+        pageBtnPrevious.classList.add('page-button__inactiv');
+      } else {
+        pageBtnPrevious.removeAttribute('disabled');
+        pageBtnPrevious.classList.remove('page-button__inactiv');
+      }
+      pageBtnPrevious.addEventListener('click', loadProductsButton);
+      buttons.push(pageBtnPrevious);
+
       // pierwszy przycisk
 
       const pageBtnFirst = document.createElement('button');
@@ -132,7 +149,7 @@ export async function getByTitle(title, page = 1) {
         } else {
           let lastButton = '';
           let firstButton = '';
-          let activButton = '';
+
           if (
             moviesByTitle.data.total_pages > 8 &&
             moviesByTitle.data.page <= 5
@@ -152,14 +169,12 @@ export async function getByTitle(title, page = 1) {
             const pageBtnPlus = document.createElement('button');
             pageBtnPlus.innerText = '...';
             pageBtnPlus.dataset.page = lastButton + 1;
-            moviesByTitle.data.page = lastButton + 1;
+            // moviesByTitle.data.page = lastButton + 1;
             pageBtnPlus.classList.add('page-button');
 
             pageBtnPlus.addEventListener('click', loadProductsButton);
             buttons.push(pageBtnPlus);
           } else {
-            activButton = moviesByTitle.data.page;
-
             if (moviesByTitle.data.page < moviesByTitle.data.total_pages - 4) {
               firstButton = activButton - 2;
               const pageBtnMinus = document.createElement('button');
@@ -190,7 +205,7 @@ export async function getByTitle(title, page = 1) {
               firstButton = activButton - 2;
               const pageBtnMinus = document.createElement('button');
               pageBtnMinus.innerText = '...';
-              pageBtnMinus.dataset.page = firstButton - 1;
+              pageBtnMinus.dataset.page = moviesByTitle.data.total_pages - 7;
               pageBtnMinus.classList.add('page-button');
               pageBtnMinus.addEventListener('click', loadProductsButton);
               buttons.push(pageBtnMinus);
@@ -227,7 +242,21 @@ export async function getByTitle(title, page = 1) {
       buttons.push(pageBtnLast);
       // ostatni przycisk koniec
 
-      console.log(buttons);
+      const pageBtnNext = document.createElement('button');
+      pageBtnNext.classList.add('page-button__previous');
+      pageBtnNext.classList.add('page-button');
+      pageBtnNext.innerText = 1;
+      pageBtnNext.dataset.page = moviesByTitle.data.page + 1;
+      console.log(moviesByTitle.data.page);
+      if (activButton === moviesByTitle.data.total_pages) {
+        pageBtnNext.toggleAttribute('disabled');
+        pageBtnNext.classList.add('page-button__inactiv');
+      } else {
+        pageBtnNext.removeAttribute('disabled');
+        pageBtnNext.classList.remove('page-button__inactiv');
+      }
+      pageBtnNext.addEventListener('click', loadProductsButton);
+      buttons.push(pageBtnNext);
 
       pages.innerHTML = '';
       pages.append(...buttons);
