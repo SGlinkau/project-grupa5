@@ -20,7 +20,22 @@ form.addEventListener('submit', e => {
 
   getByTitle(input.value);
 });
+// Szukanie po klilnięciu ikony
 
+const searchInput = document.getElementById('input'); 
+const searchIcon = document.querySelector('[data-search]'); 
+
+
+searchIcon.addEventListener('click', function () {
+  const searchQuery = searchInput.value.trim(); 
+
+  if (searchQuery !== '') {
+    
+    moviesList.replaceChildren();
+    getByTitle(searchQuery); 
+  }
+});
+// Koniec szukania ikony
 form.addEventListener('change', () => {
   searchError.classList.add('is-hidden');
 });
