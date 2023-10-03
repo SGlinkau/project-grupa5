@@ -1,19 +1,21 @@
 import axios from 'axios';
 import noPosterURL from './images/no-poster.jpg';
 import Notiflix from 'notiflix';
- 
+
 function showNoTrailerNotification() {
   Notiflix.Notify.failure('There is no trailer available for this movie.');
 }
 
-
+export const btnWatched = document.querySelector('#add__watched-btn');
+export const btnQueue = document.querySelector('#add__queue-btn');
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
 export const searchError = document.querySelector('.not-found');
+let watchedList = [];
 
 //nowe
-const genreIdToName = {};
+export const genreIdToName = {};
 const pages = document.querySelector('#pages');
 
 export async function getPopular() {
@@ -91,7 +93,7 @@ export async function getByTitle(title, page = 1) {
 
       moviesList.insertAdjacentHTML(
         'beforeend',
-        `<li class='movie-box'>
+        `<li class='movie-box' id=${item.id}>
         <a class='movie-box__link'>
         <button class='movie-box__trailer-button' type='button' id=${
           item.id
@@ -340,6 +342,8 @@ export async function getDetails(movieId) {
     ogtitle.innerHTML = details.data.original_title;
     genres.innerHTML = [...genresNames];
     about.innerHTML = details.data.overview;
+    btnWatched.setAttribute('data-movie-id', `${movieId}`);
+    btnQueue.setAttribute('data-movie-id', `${movieId}`);
     thumbnail.setAttribute(
       'src',
       // `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
@@ -450,4 +454,48 @@ export async function getTrailer(movieId) {
   } catch (error) {
     console.log(error);
   }
+}
+
+// export const watchedListHTML = document.querySelector('.library-list');
+
+// export async function buildLibrary(movieId) {
+//   const movie = await axios.get(
+//     `https://api.themoviedb.org/3/movie/${movieId}`,
+//     {
+//       params: {
+//         language: 'en-US',
+//         api_key: 'c90cdec037818042646f6ab3cec9ea66',
+//       },
+//       headers: { accept: 'application/json' },
+//     }
+//   );
+//   const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
+
+//   const posterSrc = movie.data.results.poster_path
+//     ? `https://www.themoviedb.org/t/p/w500${movie.data.results.poster_path}`
+//     : noPosterURL;
+
+//   watchedListHTML.insertAdjacentHTML(
+//     'beforeend',
+//     `<li class='movie-box'>
+//         <a class='movie-box__link'>
+//         <button class='movie-box__trailer-button' type='button' id=${
+//           movie.data.results.id
+//         }>Trailer</button>
+//         <img class='movie-box__poster' id=${
+//           movie.data.results.id
+//         } src='${posterSrc}' />
+//         </a>
+//         <h2 class='movie-box__title'>${movie.data.results.title}</h2>
+//         <p class='movie-box__info'>${genreNames.join(
+//           ', '
+//         )} | ${movie.data.results.release_date.slice(0, 4)}</p>
+//         </li>`
+//   );
+// }
+
+export function addToWatchedList(x) {
+  const movie = { id: `${x}` };
+  watchedList.push(movie);
+  localStorage.setItem('watchedList', JSON.stringify(watchedList));
 }

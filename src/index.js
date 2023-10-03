@@ -1,10 +1,10 @@
 import './main.scss';
-import { getPopular, searchError } from './api.js';
-import { getByTitle } from './api.js';
+import { getPopular, searchError, getByTitle, btnWatched } from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
+import { addToWatchedList } from './api.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
@@ -22,17 +22,15 @@ form.addEventListener('submit', e => {
 });
 // Szukanie po klilnięciu ikony
 
-const searchInput = document.getElementById('input'); 
-const searchIcon = document.querySelector('[data-search]'); 
-
+const searchInput = document.getElementById('input');
+const searchIcon = document.querySelector('[data-search]');
 
 searchIcon.addEventListener('click', function () {
-  const searchQuery = searchInput.value.trim(); 
+  const searchQuery = searchInput.value.trim();
 
   if (searchQuery !== '') {
-    
     moviesList.replaceChildren();
-    getByTitle(searchQuery); 
+    getByTitle(searchQuery);
   }
 });
 // Koniec szukania ikony
@@ -60,4 +58,37 @@ moviesList.addEventListener('click', e => {
   getTrailer(id);
 });
 
+btnWatched.addEventListener('click', () => {
+  const movieId = btnWatched.getAttribute('data-movie-id');
+
+  addToWatchedList(movieId);
+});
+
 // drawPages(total_pages);
+// export const watchedListHTML = document.querySelector('.library-list');
+// const headerLibrary = document.querySelector('.library');
+// let watchedList = [];
+
+// btnWatched.addEventListener('click', () => {
+//   const movieId = btnWatched.getAttribute('data-movie-id');
+
+//   addToWatchedList(movieId);
+// });
+
+// function addToWatchedList(x) {
+//   const movie = { id: `${x}` };
+//   watchedList.push(movie);
+//   localStorage.setItem('watchedList', JSON.stringify(watchedList));
+//   const storageArray = JSON.parse(localStorage.getItem('watchedList'));
+//   storageArray.forEach(item => {
+//     buildLibrary(item.id);
+//     console.log(item.id);
+//   });
+
+// headerLibrary.after(watchedListHTML);
+
+btnWatched.addEventListener('click', () => {
+  const movieId = btnWatched.getAttribute('data-movie-id');
+
+  addToWatchedList(movieId);
+});
