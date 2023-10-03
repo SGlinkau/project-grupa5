@@ -1,11 +1,10 @@
 import axios from 'axios';
 import noPosterURL from './images/no-poster.jpg';
 import Notiflix from 'notiflix';
- 
+
 function showNoTrailerNotification() {
   Notiflix.Notify.failure('There is no trailer available for this movie.');
 }
-
 
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
@@ -279,10 +278,11 @@ function loadProductsButton() {
   getByTitle(input.value, this.dataset.page);
 }
 // nowe Aga do
+
 export async function getDetails(movieId) {
   try {
-    const movieBox = document.createElement('div');
-    moviesList.after(movieBox);
+    // const movieBox = document.createElement('div');
+    // moviesList.after(movieBox);
     const details = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}`,
       {
@@ -325,7 +325,6 @@ export async function getDetails(movieId) {
     for (const movieThumbnail of movieThumbnails) {
       movieThumbnail.addEventListener('click', showModal);
     }
-
     function hideModal() {
       modal.classList.add('is-hidden');
       modal.classList.remove('is-visible');
@@ -340,6 +339,7 @@ export async function getDetails(movieId) {
     ogtitle.innerHTML = details.data.original_title;
     genres.innerHTML = [...genresNames];
     about.innerHTML = details.data.overview;
+
     thumbnail.setAttribute(
       'src',
       // `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
@@ -363,14 +363,16 @@ export async function getDetails(movieId) {
     error => console.log(error);
   }
 }
-
 export async function getGenres() {
   try {
     //nowe
     const genresResponse = await axios.get(
       'https://api.themoviedb.org/3/genre/movie/list',
       {
-        params: { language: 'en', api_key: 'c90cdec037818042646f6ab3cec9ea66' },
+        params: {
+          language: 'en',
+          api_key: 'c90cdec037818042646f6ab3cec9ea66',
+        },
         headers: {
           accept: 'application/json',
         },
