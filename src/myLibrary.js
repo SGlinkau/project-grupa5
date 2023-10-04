@@ -1,84 +1,148 @@
 import './main.scss';
+import axios from 'axios';
+import { getDetails, getTrailer } from './api';
 
-const addToWatchedButton = document.getElementById('add__watched-btn');
-const addToQueueButton = document.getElementById('add__queue-btn');
+const watchedListHTML = document.querySelector('.library-list');
+const headerWatchedButton = document.querySelector('#watched-btn');
 
-addToWatchedButton.addEventListener('click', function () {
-  const movieId = this.getAttribute('data-movie-id');
-
-  addToWatchedList(movieId);
+window.addEventListener('load', () => {
+  buildLibrary();
 });
-
-addToQueueButton.addEventListener('click', function () {
-  const movieId = this.getAttribute('data-movie-id');
-
-  addToQueueList(movieId);
+headerWatchedButton.addEventListener('click', () => {
+  buildLibrary();
 });
-
-function addToWatchedList(movieId) {
-  let watchedList = localStorage.getItem('watched');
-
-  if (!watchedList) {
-    watchedList = [];
-  } else {
-    watchedList = JSON.parse(watchedList);
+watchedListHTML.addEventListener('click', e => {
+  if (e.target.nodeName !== 'IMG') {
+    return;
   }
+  const id = e.target.getAttribute('id');
+  getDetails(id);
+});
+watchedListHTML.addEventListener('click', e => {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const id = e.target.getAttribute('id');
+  getTrailer(id);
+});
 
-  watchedList.push(movieId);
+export async function buildLibrary() {
+  const storageArray = JSON.parse(localStorage.getItem('watchedList'));
+  storageArray.forEach(async item => {
+    const movie = await axios.get(
+      `https://api.themoviedb.org/3/movie/${item.id}`,
+      {
+        params: {
+          language: 'en-US',
+          api_key: 'c90cdec037818042646f6ab3cec9ea66',
+        },
+        headers: { accept: 'application/json' },
+      }
+    );
+    let genresArray = [];
+    movie.data.genres.forEach(genre => genresArray.push(genre.name));
 
-  localStorage.setItem('watched', JSON.stringify(watchedList));
+    const posterSrc = movie.data.poster_path
+      ? `https://www.themoviedb.org/t/p/w500${movie.data.poster_path}`
+      : noPosterURL;
 
-  alert('Film został dodany do Watched!');
+    watchedListHTML.insertAdjacentHTML(
+      'beforeend',
+      `<li class='movie-box'>
+      <a class='movie-box__link'>
+      <button class='movie-box__trailer-button' type='button' id=${
+        item.id
+      }>Trailer</button>
+    <img class='movie-box__poster' id=${item.id} src='${posterSrc}' />
+    </a>
+    <h2 class='movie-box__title'>${movie.data.title}</h2>
+    <p class='movie-box__info'> ${[
+      ...genresArray,
+    ]} | ${movie.data.release_date.slice(0, 4)}</p>
+    </li>`
+    );
+  });
 }
 
-function addToQueueList(movieId) {
-  let queueList = localStorage.getItem('queue');
+// export const addToWatchedButton = document.getElementById('add__watched-btn');
+// const addToQueueButton = document.getElementById('add__queue-btn');
 
-  if (!queueList) {
-    queueList = [];
-  } else {
-    queueList = JSON.parse(queueList);
-  }
+// addToWatchedButton.addEventListener('click', () => {
+//   // const movieId = e.getAttribute('data-movie-id');
+//   console.log('dupa');
+//   // addToWatchedList(movieId);
+// });
 
-  queueList.push(movieId);
+// addToQueueButton.addEventListener('click', function () {
+//   const movieId = this.getAttribute('data-movie-id');
 
-  localStorage.setItem('queue', JSON.stringify(queueList));
+//   addToQueueList(movieId);
+// });
 
-  alert('Film został dodany do Queue!');
-}
+// function addToWatchedList(movieId) {
+//   let watchedList = localStorage.getItem('watched');
 
-const watchedList = JSON.parse(localStorage.getItem('watched')) || [];
-const queueList = JSON.parse(localStorage.getItem('queue')) || [];
+//   if (!watchedList) {
+//     watchedList = [];
+//   } else {
+//     watchedList = JSON.parse(watchedList);
+//   }
 
-/*********************************************************************************************************************** */
+//   watchedList.push(movieId);
 
-const watchedButton = document.getElementById('watched-btn');
-const queueButton = document.getElementById('queue-btn');
+//   localStorage.setItem('watched', JSON.stringify(watchedList));
 
-function displayList(listName) {
-  const list = JSON.parse(localStorage.getItem(listName)) || [];
+//   alert('Film został dodany do Watched!');
+// }
 
-  const listContainer = document.getElementById('list-container');
+// function addToQueueList(movieId) {
+//   let queueList = localStorage.getItem('queue');
 
-  listContainer.innerHTML = '';
+//   if (!queueList) {
+//     queueList = [];
+//   } else {
+//     queueList = JSON.parse(queueList);
+//   }
 
-  if (list.length === 0) {
-    listContainer.innerHTML = '<p>Lista jest pusta.</p>';
-  } else {
-    const ul = document.createElement('ul');
-    list.forEach(movieId => {
-      const li = document.createElement('li');
-      li.textContent = `Film ID: ${movieId}`;
-      ul.appendChild(li);
-    });
-    listContainer.appendChild(ul);
-  }
-}
+//   queueList.push(movieId);
 
-watchedButton.addEventListener('click', () => {
-  displayList('watched');
-});
+//   localStorage.setItem('queue', JSON.stringify(queueList));
 
-queueButton.addEventListener('click', () => {
-  displayList('queue');
-});
+//   alert('Film został dodany do Queue!');
+// }
+
+// const watchedList = JSON.parse(localStorage.getItem('watched')) || [];
+// const queueList = JSON.parse(localStorage.getItem('queue')) || [];
+
+// /*********************************************************************************************************************** */
+
+// const watchedButton = document.getElementById('watched-btn');
+// const queueButton = document.getElementById('queue-btn');
+
+// function displayList(listName) {
+//   const list = JSON.parse(localStorage.getItem(listName)) || [];
+
+//   const listContainer = document.getElementById('list-container');
+
+//   listContainer.innerHTML = '';
+
+//   if (list.length === 0) {
+//     listContainer.innerHTML = '<p>Lista jest pusta.</p>';
+//   } else {
+//     const ul = document.createElement('ul');
+//     list.forEach(movieId => {
+//       const li = document.createElement('li');
+//       li.textContent = `Film ID: ${movieId}`;
+//       ul.appendChild(li);
+//     });
+//     listContainer.appendChild(ul);
+//   }
+// }
+
+// watchedButton.addEventListener('click', () => {
+//   displayList('watched');
+// });
+
+// queueButton.addEventListener('click', () => {
+//   displayList('queue');
+// });
