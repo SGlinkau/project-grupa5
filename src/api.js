@@ -164,6 +164,11 @@ export async function getDetails(movieId) {
     }
 
     icon.addEventListener('click', hideModal);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        hideModal();
+      }
+    });
 
     name.innerHTML = details.data.title;
     votes.innerHTML = `${details.data.vote_average} / ${details.data.vote_count}`;
