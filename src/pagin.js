@@ -14,7 +14,7 @@ export function pagin(moviesByTitle) {
     const pageBtnPrevious = document.createElement('button');
     pageBtnPrevious.classList.add('page-button__previous');
     pageBtnPrevious.classList.add('page-button');
-    pageBtnPrevious.innerText = '<-';
+    pageBtnPrevious.innerText = '◄';
     pageBtnPrevious.dataset.page = moviesByTitle.data.page - 1;
     if (activButton === 1) {
       pageBtnPrevious.toggleAttribute('disabled');
@@ -151,7 +151,7 @@ export function pagin(moviesByTitle) {
     const pageBtnNext = document.createElement('button');
     pageBtnNext.classList.add('page-button__previous');
     pageBtnNext.classList.add('page-button');
-    pageBtnNext.innerText = '->';
+    pageBtnNext.innerText = '►';
     pageBtnNext.dataset.page = moviesByTitle.data.page + 1;
     console.log(moviesByTitle.data.page);
     if (activButton === moviesByTitle.data.total_pages) {
