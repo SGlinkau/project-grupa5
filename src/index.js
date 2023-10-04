@@ -7,11 +7,14 @@ import {
   btnQueue,
   btnWatchedRemove,
   btnQueueRemove,
+  addToWatchedList,
+  removeToWatchedList,
 } from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
+import { addToWatchedList, removeToWatchedList } from './api.js';
 import { addToWatchedList, addToQueueList } from './api.js';
 import Notiflix from 'notiflix';
 
@@ -75,7 +78,7 @@ btnWatched.addEventListener('click', () => {
 btnWatchedRemove.addEventListener('click', () => {
   const movieId = btnWatchedRemove.getAttribute('data-movie-id');
 
-  addToWatchedList(movieId);
+  removeToWatchedList(movieId);
 });
 
 btnQueue.addEventListener('click', () => {
