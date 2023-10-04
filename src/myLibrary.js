@@ -1,26 +1,6 @@
-// import './main.scss';
-import axios from 'axios';
-// import { getDetails, getTrailer } from './api';
 import './main.scss';
-import {
-  getPopular,
-  searchError,
-  getByTitle,
-  btnWatched,
-  btnQueue,
-  btnWatchedRemove,
-  btnQueueRemove,
-  addToWatchedList,
-  removeToWatchedList,
-  removeToQueueList,
-} from './api.js';
-import { getDetails } from './api.js';
-import { moviesList } from './api.js';
-import { getGenres } from './api.js';
-import { getTrailer } from './api.js';
-import { addToWatchedList, removeToWatchedList } from './api.js';
-import { addToWatchedList, addToQueueList } from './api.js';
-import Notiflix from 'notiflix';
+import axios from 'axios';
+import { getDetails, getTrailer } from './api';
 
 const watchedListHTML = document.querySelector('.library-list');
 const headerWatchedButton = document.querySelector('#watched-btn');
@@ -124,33 +104,6 @@ export async function buildQueueLibrary() {
     );
   });
 }
-
-const btnWatched = document.querySelector('#add__watched-btn');
-const btnQueue = document.querySelector('#add__queue-btn');
-
-const btnWatchedRemove = document.querySelector('#remove__watched-btn');
-const btnQueueRemove = document.querySelector('#remove__queue-btn');
-
-btnWatched.addEventListener('click', () => {
-  const movieId = btnWatched.getAttribute('data-movie-id');
-
-  addToWatchedList(movieId);
-});
-btnWatchedRemove.addEventListener('click', () => {
-  const movieId = btnWatchedRemove.getAttribute('data-movie-id');
-
-  removeToWatchedList(movieId);
-});
-btnQueue.addEventListener('click', () => {
-  const movieId = btnQueue.getAttribute('data-movie-id');
-
-  addToQueueList(movieId);
-});
-btnQueueRemove.addEventListener('click', () => {
-  const movieId = btnQueueRemove.getAttribute('data-movie-id');
-
-  removeToQueueList(movieId);
-});
 
 // export const addToWatchedButton = document.getElementById('add__watched-btn');
 // const addToQueueButton = document.getElementById('add__queue-btn');
