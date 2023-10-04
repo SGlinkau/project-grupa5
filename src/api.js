@@ -279,35 +279,39 @@ export async function getTrailer(movieId) {
 export function addToWatchedList(x) {
   const movie = { id: `${x}` };
   const isDuplicate = watchedList.some(item => item.id === movie.id);
-  if (!isDuplicate) {
+  // if (!isDuplicate) {
   watchedList.push(movie);
   localStorage.setItem('watchedList', JSON.stringify(watchedList));
   Notiflix.Notify.success('The movie has been added to watched list.');
   btnWatched.classList.toggle('modal__btns__btn--ishiden');
   btnWatchedRemove.classList.toggle('modal__btns__btn--ishiden');
-}}
+  // }
+}
 export function removeToWatchedList(x) {
   const movie = { id: `${x}` };
   watchedList.push(movie);
-  localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  localStorage.removeItem('watchedList', JSON.stringify(watchedList));
   btnWatchedRemove.classList.toggle('modal__btns__btn--ishiden');
   btnWatched.classList.toggle('modal__btns__btn--ishiden');
+  location.reload();
 }
 
 export function addToQueueList(x) {
   const movie = { id: `${x}` };
   const isDuplicate = queueList.some(item => item.id === movie.id);
   if (!isDuplicate) {
-  queueList.push(movie);
-  localStorage.setItem('queueList', JSON.stringify(queueList));
-  Notiflix.Notify.success('The movie has been added to the queue.');
-  btnQueue.classList.toggle('modal__btns__btn--ishiden');
-  btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
-}}
+    queueList.push(movie);
+    localStorage.setItem('queueList', JSON.stringify(queueList));
+    Notiflix.Notify.success('The movie has been added to the queue.');
+    btnQueue.classList.toggle('modal__btns__btn--ishiden');
+    btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
+  }
+}
 export function removeToQueueList(x) {
   const movie = { id: `${x}` };
   queueList.push(movie);
-  localStorage.setItem('queueList', JSON.stringify(queueList));
+  localStorage.removeItem('queueList', JSON.stringify(queueList));
   btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
   btnQueue.classList.toggle('modal__btns__btn--ishiden');
+  location.reload();
 }
