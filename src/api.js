@@ -15,8 +15,8 @@ export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
 export const searchError = document.querySelector('.not-found');
 let watchedList = [];
+let queueList = [];
 
-//nowe
 export const genreIdToName = {};
 const pages = document.querySelector('#pages');
 
@@ -36,7 +36,6 @@ export async function getPopular() {
       }
     );
     popular.data.results.forEach(item => {
-      //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
 
       const posterSrc = item.poster_path
@@ -86,7 +85,6 @@ export async function getByTitle(title, page = 1) {
     }
 
     array.forEach(item => {
-      //nowe
       const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
 
       const posterSrc = item.poster_path
@@ -117,8 +115,6 @@ export async function getByTitle(title, page = 1) {
 //
 export async function getDetails(movieId) {
   try {
-    // const movieBox = document.createElement('div');
-    // moviesList.after(movieBox);
     const details = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}`,
       {
@@ -177,32 +173,13 @@ export async function getDetails(movieId) {
     about.innerHTML = details.data.overview;
     btnWatched.setAttribute('data-movie-id', `${movieId}`);
     btnQueue.setAttribute('data-movie-id', `${movieId}`);
-    thumbnail.setAttribute(
-      'src',
-      // `https://www.themoviedb.org/t/p/w500${details.data.poster_path}`
-      `${posterSrc}`
-    );
-    // zakomentowane zeby nie tworzyl sie box pod stroną
-    //  movieBox.insertAdjacentHTML(
-    //       'afterbegin',
-    //       `<img src='https://www.themoviedb.org/t/p/w500${
-    //         details.data.poster_path
-    //       }'/>
-    //       <h2>${details.data.title}</h2>
-    //       <p>Vote / Votes ${details.data.vote_average} / ${
-    //         details.data.vote_count
-    //       }</p>
-    //       <p>Popularity ${details.data.popularity}</p>
-    //       <p>Original Title ${details.data.original_title}</p>
-    //       <p>Genre ${[...genresNames]}</p>
-    //     <p>ABOUT: ${details.data.overview}</p>`
+    thumbnail.setAttribute('src', `${posterSrc}`);
   } catch {
     error => console.log(error);
   }
 }
 export async function getGenres() {
   try {
-    //nowe
     const genresResponse = await axios.get(
       'https://api.themoviedb.org/3/genre/movie/list',
       {
@@ -215,12 +192,11 @@ export async function getGenres() {
         },
       }
     );
-    //nowe
+
     const genres = genresResponse.data.genres;
     genres.forEach(genre => {
       genreIdToName[genre.id] = genre.name;
     });
-    // console.log(genres.data);
   } catch {
     error => console.log(error);
   }
@@ -291,46 +267,14 @@ export async function getTrailer(movieId) {
   }
 }
 
-// export const watchedListHTML = document.querySelector('.library-list');
-
-// export async function buildLibrary(movieId) {
-//   const movie = await axios.get(
-//     `https://api.themoviedb.org/3/movie/${movieId}`,
-//     {
-//       params: {
-//         language: 'en-US',
-//         api_key: 'c90cdec037818042646f6ab3cec9ea66',
-//       },
-//       headers: { accept: 'application/json' },
-//     }
-//   );
-//   const genreNames = item.genre_ids.map(genreId => genreIdToName[genreId]);
-
-//   const posterSrc = movie.data.results.poster_path
-//     ? `https://www.themoviedb.org/t/p/w500${movie.data.results.poster_path}`
-//     : noPosterURL;
-
-//   watchedListHTML.insertAdjacentHTML(
-//     'beforeend',
-//     `<li class='movie-box'>
-//         <a class='movie-box__link'>
-//         <button class='movie-box__trailer-button' type='button' id=${
-//           movie.data.results.id
-//         }>Trailer</button>
-//         <img class='movie-box__poster' id=${
-//           movie.data.results.id
-//         } src='${posterSrc}' />
-//         </a>
-//         <h2 class='movie-box__title'>${movie.data.results.title}</h2>
-//         <p class='movie-box__info'>${genreNames.join(
-//           ', '
-//         )} | ${movie.data.results.release_date.slice(0, 4)}</p>
-//         </li>`
-//   );
-// }
-
 export function addToWatchedList(x) {
   const movie = { id: `${x}` };
   watchedList.push(movie);
   localStorage.setItem('watchedList', JSON.stringify(watchedList));
+}
+
+export function addToQueueList(x) {
+  const movie = { id: `${x}` };
+  queueList.push(movie);
+  localStorage.setItem('queueList', JSON.stringify(queueList));
 }

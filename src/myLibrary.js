@@ -4,12 +4,13 @@ import { getDetails, getTrailer } from './api';
 
 const watchedListHTML = document.querySelector('.library-list');
 const headerWatchedButton = document.querySelector('#watched-btn');
+const headerQueueButton = document.querySelector('#queue-btn');
 
-window.addEventListener('load', () => {
-  buildLibrary();
+headerQueueButton.addEventListener('click', () => {
+  buildQueueLibrary();
 });
 headerWatchedButton.addEventListener('click', () => {
-  buildLibrary();
+  buildWatchedLibrary();
 });
 watchedListHTML.addEventListener('click', e => {
   if (e.target.nodeName !== 'IMG') {
@@ -26,8 +27,48 @@ watchedListHTML.addEventListener('click', e => {
   getTrailer(id);
 });
 
-export async function buildLibrary() {
+export async function buildWatchedLibrary() {
+  watchedListHTML.replaceChildren();
   const storageArray = JSON.parse(localStorage.getItem('watchedList'));
+  storageArray.forEach(async item => {
+    const movie = await axios.get(
+      `https://api.themoviedb.org/3/movie/${item.id}`,
+      {
+        params: {
+          language: 'en-US',
+          api_key: 'c90cdec037818042646f6ab3cec9ea66',
+        },
+        headers: { accept: 'application/json' },
+      }
+    );
+    let genresArray = [];
+    movie.data.genres.forEach(genre => genresArray.push(genre.name));
+
+    const posterSrc = movie.data.poster_path
+      ? `https://www.themoviedb.org/t/p/w500${movie.data.poster_path}`
+      : noPosterURL;
+
+    watchedListHTML.insertAdjacentHTML(
+      'beforeend',
+      `<li class='movie-box'>
+      <a class='movie-box__link'>
+      <button class='movie-box__trailer-button' type='button' id=${
+        item.id
+      }>Trailer</button>
+    <img class='movie-box__poster' id=${item.id} src='${posterSrc}' />
+    </a>
+    <h2 class='movie-box__title'>${movie.data.title}</h2>
+    <p class='movie-box__info'> ${[
+      ...genresArray,
+    ]} | ${movie.data.release_date.slice(0, 4)}</p>
+    </li>`
+    );
+  });
+}
+
+export async function buildQueueLibrary() {
+  watchedListHTML.replaceChildren();
+  const storageArray = JSON.parse(localStorage.getItem('queueList'));
   storageArray.forEach(async item => {
     const movie = await axios.get(
       `https://api.themoviedb.org/3/movie/${item.id}`,
@@ -138,11 +179,3 @@ export async function buildLibrary() {
 //     listContainer.appendChild(ul);
 //   }
 // }
-
-// watchedButton.addEventListener('click', () => {
-//   displayList('watched');
-// });
-
-// queueButton.addEventListener('click', () => {
-//   displayList('queue');
-// });
