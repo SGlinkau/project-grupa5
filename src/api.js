@@ -10,6 +10,10 @@ function showNoTrailerNotification() {
 
 export const btnWatched = document.querySelector('#add__watched-btn');
 export const btnQueue = document.querySelector('#add__queue-btn');
+
+export const btnWatchedRemove = document.querySelector('#remove__watched-btn');
+export const btnQueueRemove = document.querySelector('#remove__queue-btn');
+
 const header = document.querySelector('.header');
 export const moviesList = document.createElement('ul');
 moviesList.classList.add('movies-list');
@@ -274,20 +278,30 @@ export async function getTrailer(movieId) {
 
 export function addToWatchedList(x) {
   const movie = { id: `${x}` };
-  
-  const isDuplicate = watchedList.some(item => item.id === movie.id);
-  if (!isDuplicate) {
-    watchedList.push(movie);
-    localStorage.setItem('watchedList', JSON.stringify(watchedList));
-  }
+  watchedList.push(movie);
+  localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  btnWatched.classList.toggle('modal__btns__btn--ishiden');
+  btnWatchedRemove.classList.toggle('modal__btns__btn--ishiden');
+}
+export function removeToWatchedList(x) {
+  const movie = { id: `${x}` };
+  watchedList.push(movie);
+  localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  btnWatchedRemove.classList.toggle('modal__btns__btn--ishiden');
+  btnWatched.classList.toggle('modal__btns__btn--ishiden');
 }
 
 export function addToQueueList(x) {
   const movie = { id: `${x}` };
-  
-  const isDuplicate = queueList.some(item => item.id === movie.id);
-  if (!isDuplicate) {
-    queueList.push(movie);
-    localStorage.setItem('queueList', JSON.stringify(queueList));
-  }
+  queueList.push(movie);
+  localStorage.setItem('queueList', JSON.stringify(queueList));
+  btnQueue.classList.toggle('modal__btns__btn--ishiden');
+  btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
+}
+export function removeToQueueList(x) {
+  const movie = { id: `${x}` };
+  queueList.push(movie);
+  localStorage.setItem('queueList', JSON.stringify(queueList));
+  btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
+  btnQueue.classList.toggle('modal__btns__btn--ishiden');
 }
