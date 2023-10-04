@@ -282,6 +282,7 @@ export function addToWatchedList(x) {
   if (!isDuplicate) {
   watchedList.push(movie);
   localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  Notiflix.Notify.success('The movie has been added to watched list.');
   btnWatched.classList.toggle('modal__btns__btn--ishiden');
   btnWatchedRemove.classList.toggle('modal__btns__btn--ishiden');
 }}
@@ -299,6 +300,7 @@ export function addToQueueList(x) {
   if (!isDuplicate) {
   queueList.push(movie);
   localStorage.setItem('queueList', JSON.stringify(queueList));
+  Notiflix.Notify.success('The movie has been added to the queue.');
   btnQueue.classList.toggle('modal__btns__btn--ishiden');
   btnQueueRemove.classList.toggle('modal__btns__btn--ishiden');
 }}
