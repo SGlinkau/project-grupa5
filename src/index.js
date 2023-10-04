@@ -5,6 +5,8 @@ import {
   getByTitle,
   btnWatched,
   btnQueue,
+  btnWatchedRemove,
+  btnQueueRemove,
 } from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
@@ -69,14 +71,19 @@ btnWatched.addEventListener('click', () => {
   addToWatchedList(movieId);
 });
 
-btnWatched.addEventListener('click', () => {
-  const movieId = btnWatched.getAttribute('data-movie-id');
+btnWatchedRemove.addEventListener('click', () => {
+  const movieId = btnWatchedRemove.getAttribute('data-movie-id');
 
   addToWatchedList(movieId);
 });
 
 btnQueue.addEventListener('click', () => {
   const movieId = btnQueue.getAttribute('data-movie-id');
+
+  addToQueueList(movieId);
+});
+btnQueueRemove.addEventListener('click', () => {
+  const movieId = btnQueueRemove.getAttribute('data-movie-id');
 
   addToQueueList(movieId);
 });
