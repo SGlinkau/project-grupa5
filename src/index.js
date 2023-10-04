@@ -1,10 +1,16 @@
 import './main.scss';
-import { getPopular, searchError, getByTitle, btnWatched } from './api.js';
+import {
+  getPopular,
+  searchError,
+  getByTitle,
+  btnWatched,
+  btnQueue,
+} from './api.js';
 import { getDetails } from './api.js';
 import { moviesList } from './api.js';
 import { getGenres } from './api.js';
 import { getTrailer } from './api.js';
-import { addToWatchedList } from './api.js';
+import { addToWatchedList, addToQueueList } from './api.js';
 
 const form = document.querySelector('.header__form');
 const input = document.querySelector('#input');
@@ -63,31 +69,14 @@ btnWatched.addEventListener('click', () => {
   addToWatchedList(movieId);
 });
 
-// drawPages(total_pages);
-// export const watchedListHTML = document.querySelector('.library-list');
-// const headerLibrary = document.querySelector('.library');
-// let watchedList = [];
-
-// btnWatched.addEventListener('click', () => {
-//   const movieId = btnWatched.getAttribute('data-movie-id');
-
-//   addToWatchedList(movieId);
-// });
-
-// function addToWatchedList(x) {
-//   const movie = { id: `${x}` };
-//   watchedList.push(movie);
-//   localStorage.setItem('watchedList', JSON.stringify(watchedList));
-//   const storageArray = JSON.parse(localStorage.getItem('watchedList'));
-//   storageArray.forEach(item => {
-//     buildLibrary(item.id);
-//     console.log(item.id);
-//   });
-
-// headerLibrary.after(watchedListHTML);
-
 btnWatched.addEventListener('click', () => {
   const movieId = btnWatched.getAttribute('data-movie-id');
 
   addToWatchedList(movieId);
+});
+
+btnQueue.addEventListener('click', () => {
+  const movieId = btnQueue.getAttribute('data-movie-id');
+
+  addToQueueList(movieId);
 });
