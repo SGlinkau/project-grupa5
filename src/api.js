@@ -274,12 +274,20 @@ export async function getTrailer(movieId) {
 
 export function addToWatchedList(x) {
   const movie = { id: `${x}` };
-  watchedList.push(movie);
-  localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  
+  const isDuplicate = watchedList.some(item => item.id === movie.id);
+  if (!isDuplicate) {
+    watchedList.push(movie);
+    localStorage.setItem('watchedList', JSON.stringify(watchedList));
+  }
 }
 
 export function addToQueueList(x) {
   const movie = { id: `${x}` };
-  queueList.push(movie);
-  localStorage.setItem('queueList', JSON.stringify(queueList));
+  
+  const isDuplicate = queueList.some(item => item.id === movie.id);
+  if (!isDuplicate) {
+    queueList.push(movie);
+    localStorage.setItem('queueList', JSON.stringify(queueList));
+  }
 }
